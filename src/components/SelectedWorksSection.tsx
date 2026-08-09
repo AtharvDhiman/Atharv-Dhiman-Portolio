@@ -19,52 +19,28 @@ const PROJECTS: Project[] = [
   {
     id: 'finrisk',
     title: 'FinRisk — Credit Risk & Smart Loan Engine',
-    category: 'BEL Internship Project',
+    category: 'BEL Internship Assigned Project',
     year: '2026',
-    colSpan: 'md:col-span-7',
+    colSpan: 'md:col-span-6',
     aspectRatio: 'aspect-[16/10]',
     imageUrl: '/projects/finrisk.jpg',
     demoUrl: 'https://fin-risk-credit-risk-and-loan-recom-five.vercel.app',
-    description: 'Sole owner of an end-to-end credit risk assessment brief at Bharat Electronics Limited (BEL) R&D. Scored 51,336 applicant records merged from internal bank systems and CIBIL bureau data into four risk tiers (P1–P4) with FOIR guardrails.',
+    description: 'Sole owner of an end-to-end credit risk assessment brief at Bharat Electronics Limited (BEL) Central Research Laboratory. Scored 51,336 applicant records merged from internal bank systems and CIBIL bureau data into four risk tiers (P1–P4) with tier-specific caps and FOIR (≤30%) guardrails.',
     highlights: ['99.4% Accuracy (F1 0.989)', '51,336 Applicants Scored', 'Power BI Star-Schema Export'],
     skills: ['Python', 'Flask', 'Scikit-Learn', 'PostgreSQL', 'Power BI'],
   },
   {
     id: 'retainai',
     title: 'RetainAI — Employee Flight Risk Platform',
-    category: 'Predictive HR & GenAI',
+    category: 'Predictive HR Analytics & GenAI',
     year: '2026',
-    colSpan: 'md:col-span-5',
-    aspectRatio: 'aspect-[4/3]',
+    colSpan: 'md:col-span-6',
+    aspectRatio: 'aspect-[16/10]',
     imageUrl: '/projects/retainai.jpg',
     demoUrl: 'https://employee-attrition-system.vercel.app/',
-    description: 'Cloud-deployed predictive analytics platform forecasting employee flight risk at 91.6% accuracy. Features an integrated HR AI Chatbot answering natural-language queries over structured dataset metrics.',
+    description: 'Cloud-deployed predictive analytics web application forecasting employee flight risk at 91.6% accuracy. Features an integrated HR AI Chatbot answering natural-language query questions over structured workforce datasets.',
     highlights: ['91.6% Flight Risk Accuracy', 'Natural-Language Query Chatbot', 'Batch CSV Processor'],
     skills: ['Python', 'Flask', 'Scikit-Learn', 'Chart.js', 'PostgreSQL'],
-  },
-  {
-    id: 'hyperliquid',
-    title: 'Hyperliquid DEX Sentiment Alpha Pipeline',
-    category: 'Quantitative Analytics',
-    year: '2026',
-    colSpan: 'md:col-span-5',
-    aspectRatio: 'aspect-[4/3]',
-    imageUrl: '/projects/hyperliquid.jpg',
-    description: 'Evaluated 211,224 trades from 32 accounts on Hyperliquid DEX. Mapped retail sentiment (Crypto Fear & Greed Index) to trader behavior, uncovering 6.43x reward-to-risk ratio asymmetry and shorting alpha.',
-    highlights: ['211,224 Trades Mapped', '6.43x Risk/Reward Ratio', '$10.2M Net Profit Analyzed'],
-    skills: ['Python', 'SQLite', 'Pandas', 'Seaborn', 'Streamlit'],
-  },
-  {
-    id: 'resume',
-    title: 'AI Resume Screening & Hiring Intelligence',
-    category: 'NLP Text Classification',
-    year: '2026',
-    colSpan: 'md:col-span-7',
-    aspectRatio: 'aspect-[16/10]',
-    imageUrl: '/projects/resume.jpg',
-    description: 'End-to-end recruitment analytics and candidate evaluation pipeline using TF-IDF vectorization and Logistic Regression. Standardizes resume text parsing to score candidate hiring probability.',
-    highlights: ['60% Screening Time Reduction', '85%+ Classification Accuracy', 'Power BI Pipeline Report'],
-    skills: ['Python', 'NLP', 'Scikit-Learn', 'NumPy', 'Power BI'],
   },
 ];
 
@@ -87,7 +63,7 @@ export const SelectedWorksSection: React.FC = () => {
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-px bg-stroke" />
               <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
-                Featured Engineering &amp; Analytics
+                Featured Live Analytics Products
               </span>
             </div>
 
@@ -99,13 +75,13 @@ export const SelectedWorksSection: React.FC = () => {
 
           <div className="flex flex-col md:items-end gap-3">
             <p className="text-sm text-muted max-w-sm font-normal">
-              Machine learning models, credit analytics pipelines, and Generative AI interfaces deployed to cloud runtimes.
+              Cloud-deployed machine learning models and Generative AI applications for credit risk assessment and workforce analytics.
             </p>
           </div>
         </motion.div>
 
-        {/* Bento Grid (7 / 5 / 5 / 7 span layout) */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6">
+        {/* 2 Featured Projects Grid (Side by side 6 / 6 span) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
           {PROJECTS.map((project) => (
             <motion.div
               key={project.id}
@@ -114,7 +90,7 @@ export const SelectedWorksSection: React.FC = () => {
               transition={{ duration: 0.8, ease: 'easeOut' }}
               viewport={{ once: true, margin: '-50px' }}
               onClick={() => setSelectedProject(project)}
-              className={`group relative overflow-hidden bg-surface border border-stroke rounded-3xl ${project.colSpan} cursor-pointer`}
+              className={`group relative overflow-hidden bg-surface border border-stroke rounded-3xl ${project.colSpan} cursor-pointer hover:border-stroke/90 transition-all duration-300`}
             >
               <div className={`w-full ${project.aspectRatio} relative overflow-hidden`}>
                 {/* Background Image */}
@@ -129,10 +105,10 @@ export const SelectedWorksSection: React.FC = () => {
 
                 {/* Card Top Information */}
                 <div className="absolute top-6 left-6 right-6 flex items-center justify-between z-10 text-xs font-mono text-white/90">
-                  <span className="bg-black/60 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/15">
+                  <span className="bg-black/70 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15">
                     {project.category}
                   </span>
-                  <span className="bg-black/60 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/15">
+                  <span className="bg-black/70 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15">
                     {project.year}
                   </span>
                 </div>
@@ -142,8 +118,8 @@ export const SelectedWorksSection: React.FC = () => {
                   {/* Highlights pills */}
                   <div className="flex flex-wrap justify-center gap-2 mb-4 max-w-md">
                     {project.highlights.map((h, i) => (
-                      <span key={i} className="text-[11px] font-mono bg-surface border border-stroke px-2.5 py-1 rounded-full text-text-primary">
-                        {h}
+                      <span key={i} className="text-[11px] font-mono bg-surface border border-stroke px-2.5 py-1 rounded-full text-emerald-400">
+                        ✓ {h}
                       </span>
                     ))}
                   </div>
@@ -161,14 +137,14 @@ export const SelectedWorksSection: React.FC = () => {
               </div>
 
               {/* Bottom Card Title Bar */}
-              <div className="p-6 bg-surface border-t border-stroke/60 flex items-center justify-between">
+              <div className="p-6 md:p-7 bg-surface border-t border-stroke/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <h3 className="text-lg font-medium text-text-primary mb-1">
+                  <h3 className="text-lg md:text-xl font-medium text-text-primary mb-1">
                     {project.title}
                   </h3>
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
                     {project.skills.map((skill) => (
-                      <span key={skill} className="text-[10px] font-mono text-muted">
+                      <span key={skill} className="text-[11px] font-mono text-muted">
                         • {skill}
                       </span>
                     ))}
@@ -180,9 +156,10 @@ export const SelectedWorksSection: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-3 py-1.5 rounded-full hover:bg-emerald-900 transition-colors"
+                    className="text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-4 py-2 rounded-full hover:bg-emerald-900 transition-colors shrink-0 inline-flex items-center gap-1.5"
                   >
-                    Live Demo ↗
+                    <span>Live Demo</span>
+                    <span>↗</span>
                   </a>
                 )}
               </div>
@@ -242,7 +219,7 @@ export const SelectedWorksSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex items-center justify-between pt-4 border-t border-stroke/60">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-stroke/60">
               <div className="flex flex-wrap gap-2">
                 {selectedProject.skills.map((s) => (
                   <span key={s} className="text-xs font-mono bg-surface border border-stroke px-3 py-1 rounded-full text-muted">
@@ -256,7 +233,7 @@ export const SelectedWorksSection: React.FC = () => {
                   href={selectedProject.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 accent-gradient text-bg font-medium px-5 py-2.5 rounded-full text-xs hover:opacity-90 transition-opacity"
+                  className="inline-flex items-center justify-center gap-2 accent-gradient text-bg font-medium px-6 py-3 rounded-full text-xs hover:opacity-90 transition-opacity"
                 >
                   <span>Launch Live App</span>
                   <span>↗</span>
