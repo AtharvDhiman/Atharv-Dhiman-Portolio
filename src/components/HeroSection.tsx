@@ -87,7 +87,7 @@ export const HeroSection: React.FC = () => {
     <section
       id="hero"
       ref={heroRef}
-      className="relative w-full min-h-screen py-16 flex flex-col items-center justify-between overflow-hidden select-none"
+      className="relative w-full min-h-screen py-12 sm:py-16 flex flex-col items-center justify-between overflow-hidden select-none"
     >
       {/* Background HLS Video */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -106,28 +106,28 @@ export const HeroSection: React.FC = () => {
       </div>
 
       {/* Hero Content (Centered, z-10) */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center flex flex-col items-center my-auto pt-12 md:pt-16 pb-6">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center my-auto pt-14 sm:pt-16 pb-6">
         {/* Animated Logo Badge */}
         <div className="blur-in mb-3 hover:scale-105 transition-transform duration-300">
-          <Logo size={56} />
+          <Logo size={48} className="sm:w-[56px] sm:h-[56px]" />
         </div>
 
         {/* Eyebrow */}
-        <span className="blur-in inline-block text-xs text-muted uppercase tracking-[0.3em] mb-4 font-medium">
+        <span className="blur-in inline-block text-[10px] sm:text-xs text-muted uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-3 sm:mb-4 font-medium px-2">
           DATA ANALYST &amp; GENERATIVE AI // ABES IT '27
         </span>
 
         {/* Name */}
-        <h1 className="name-reveal text-5xl md:text-7xl lg:text-8xl font-display italic leading-[0.95] tracking-tight text-text-primary mb-4">
+        <h1 className="name-reveal text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display italic leading-[0.95] tracking-tight text-text-primary mb-3 sm:mb-4">
           Atharv Dhiman
         </h1>
 
         {/* Role line */}
-        <div className="blur-in text-base md:text-lg text-text-primary/90 mb-3 h-8 flex items-center justify-center gap-2 font-light">
+        <div className="blur-in text-xs sm:text-base md:text-lg text-text-primary/90 mb-3 min-h-[2rem] flex flex-wrap items-center justify-center gap-1.5 font-light px-2">
           <span>A</span>
           <span
             key={roleIndex}
-            className="font-display italic text-text-primary animate-role-fade-in inline-block text-lg md:text-xl font-medium"
+            className="font-display italic text-text-primary animate-role-fade-in inline-block text-sm sm:text-lg md:text-xl font-medium"
           >
             {ROLES[roleIndex]}
           </span>
@@ -135,19 +135,19 @@ export const HeroSection: React.FC = () => {
         </div>
 
         {/* Description */}
-        <p className="blur-in text-xs md:text-sm text-muted max-w-md md:max-w-lg mb-6 font-normal leading-relaxed">
+        <p className="blur-in text-xs sm:text-sm text-muted max-w-xs sm:max-w-md md:max-w-lg mb-6 font-normal leading-relaxed px-2">
           Final-year B.Tech (IT) student building end-to-end analytics products — ML pipelines, Flask applications, and BI models deployed to the cloud. Built credit risk models over 51,000+ applicants at Bharat Electronics Limited (BEL).
         </p>
 
         {/* CTA Buttons */}
-        <div className="blur-in inline-flex flex-wrap items-center justify-center gap-4">
+        <div className="blur-in flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto max-w-xs sm:max-w-none">
           {/* Solid "View Projects" button */}
           <button
             onClick={scrollToWorks}
-            className="group relative inline-flex items-center justify-center p-[2px] rounded-full hover:scale-105 transition-all duration-300 cursor-pointer"
+            className="group relative w-full sm:w-auto inline-flex items-center justify-center p-[2px] rounded-full hover:scale-105 transition-all duration-300 cursor-pointer"
           >
             <span className="absolute inset-0 rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <span className="relative z-10 rounded-full text-xs md:text-sm font-medium px-6 md:px-7 py-3 md:py-3.5 bg-text-primary text-bg group-hover:bg-bg group-hover:text-text-primary transition-colors duration-300">
+            <span className="relative z-10 w-full sm:w-auto text-center rounded-full text-xs sm:text-sm font-medium px-6 sm:px-7 py-3 sm:py-3.5 bg-text-primary text-bg group-hover:bg-bg group-hover:text-text-primary transition-colors duration-300">
               Explore Projects
             </span>
           </button>
@@ -155,10 +155,10 @@ export const HeroSection: React.FC = () => {
           {/* Outlined "BEL Internship" button */}
           <button
             onClick={scrollToExperience}
-            className="group relative inline-flex items-center justify-center p-[2px] rounded-full hover:scale-105 transition-all duration-300 cursor-pointer"
+            className="group relative w-full sm:w-auto inline-flex items-center justify-center p-[2px] rounded-full hover:scale-105 transition-all duration-300 cursor-pointer"
           >
             <span className="absolute inset-0 rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <span className="relative z-10 rounded-full text-xs md:text-sm font-medium px-6 md:px-7 py-3 md:py-3.5 border border-stroke bg-bg text-text-primary group-hover:border-transparent transition-all duration-300">
+            <span className="relative z-10 w-full sm:w-auto text-center rounded-full text-xs sm:text-sm font-medium px-6 sm:px-7 py-3 sm:py-3.5 border border-stroke bg-bg text-text-primary group-hover:border-transparent transition-all duration-300">
               BEL Internship Brief
             </span>
           </button>
@@ -166,11 +166,11 @@ export const HeroSection: React.FC = () => {
       </div>
 
       {/* Scroll Indicator (Shifted cleanly to downside) */}
-      <div className="relative z-20 flex flex-col items-center gap-1.5 mt-auto pt-4 cursor-pointer" onClick={scrollToWorks}>
-        <span className="text-[10px] text-muted uppercase tracking-[0.2em] font-medium">
+      <div className="relative z-20 flex flex-col items-center gap-1.5 mt-auto pt-2 sm:pt-4 cursor-pointer" onClick={scrollToWorks}>
+        <span className="text-[9px] sm:text-[10px] text-muted uppercase tracking-[0.2em] font-medium">
           SCROLL
         </span>
-        <div className="relative w-px h-8 bg-stroke/60 overflow-hidden">
+        <div className="relative w-px h-6 sm:h-8 bg-stroke/60 overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1/2 accent-gradient animate-scroll-down" />
         </div>
       </div>

@@ -87,43 +87,43 @@ export const ContactFooterSection: React.FC<ContactFooterSectionProps> = ({
       </div>
 
       {/* Main Contact CTA */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center flex flex-col items-center mb-20 md:mb-28">
-        <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium mb-4">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center mb-16 md:mb-28">
+        <span className="text-[10px] sm:text-xs text-muted uppercase tracking-[0.3em] font-medium mb-3 sm:mb-4">
           CONNECT &amp; COLLABORATE
         </span>
 
-        <h2 className="text-5xl md:text-7xl lg:text-8xl font-display italic text-text-primary mb-4 tracking-tight">
+        <h2 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display italic text-text-primary mb-4 tracking-tight leading-tight">
           Let's build something predictive.
         </h2>
 
-        <p className="text-sm text-muted max-w-md mb-8 font-normal">
+        <p className="text-xs sm:text-sm text-muted max-w-xs sm:max-w-md mb-6 sm:mb-8 font-normal">
           Available for Data Analyst, Machine Learning Engineer, and Generative AI roles. Based in Ghaziabad, UP.
         </p>
 
         {/* Email CTA Button with gradient hover ring */}
         <a
           href="mailto:ayushdhiman.9997@gmail.com"
-          className="group relative inline-flex items-center justify-center p-[2px] rounded-full hover:scale-105 transition-all duration-300 mb-6"
+          className="group relative inline-flex items-center justify-center p-[2px] rounded-full hover:scale-105 transition-all duration-300 mb-6 max-w-full"
         >
           <span className="absolute inset-0 rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          <span className="relative z-10 rounded-full text-base md:text-lg font-medium px-8 md:px-10 py-4 md:py-5 bg-text-primary text-bg group-hover:bg-bg group-hover:text-text-primary transition-colors duration-300 flex items-center gap-3">
-            <span>ayushdhiman.9997@gmail.com</span>
-            <span className="text-lg transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+          <span className="relative z-10 rounded-full text-xs sm:text-base md:text-lg font-medium px-5 sm:px-8 md:px-10 py-3.5 sm:py-4 md:py-5 bg-text-primary text-bg group-hover:bg-bg group-hover:text-text-primary transition-colors duration-300 flex items-center gap-2 sm:gap-3 truncate">
+            <span className="truncate">ayushdhiman.9997@gmail.com</span>
+            <span className="text-sm sm:text-lg transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 shrink-0">
               ↗
             </span>
           </span>
         </a>
 
-        <div className="text-xs font-mono text-muted flex flex-wrap justify-center gap-4">
+        <div className="text-xs font-mono text-muted flex flex-wrap justify-center gap-3 sm:gap-4">
           <span>📱 +91 8218367873</span>
           <span>📍 Ghaziabad, Uttar Pradesh</span>
         </div>
       </div>
 
       {/* Footer Bottom Bar */}
-      <div className="relative z-10 max-w-[1200px] mx-auto px-6 pt-8 border-t border-stroke/60 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-muted">
+      <div className="relative z-10 max-w-[1200px] mx-auto px-4 sm:px-6 pt-8 border-t border-stroke/60 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-muted">
         {/* Left: Social Links */}
-        <div className="flex items-center gap-6">
+        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
           <a
             href="https://linkedin.com/in/atharv-dhiman-080825329"
             target="_blank"
@@ -159,7 +159,7 @@ export const ContactFooterSection: React.FC<ContactFooterSectionProps> = ({
         </div>
 
         {/* Center: Theme Cycle Button & Status Badge */}
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
           <button
             onClick={onCycleTheme}
             className="flex items-center gap-1.5 text-[11px] font-mono px-3 py-1.5 rounded-full bg-surface border border-stroke text-text-primary hover:border-white/30 transition-all duration-200 cursor-pointer"
@@ -177,8 +177,8 @@ export const ContactFooterSection: React.FC<ContactFooterSectionProps> = ({
         </div>
 
         {/* Right: Logo & Copyright */}
-        <div className="flex items-center gap-3 font-mono text-[11px]">
-          <Logo size={24} />
+        <div className="flex items-center gap-2.5 font-mono text-[11px] text-center">
+          <Logo size={22} className="shrink-0" />
           <span>© {new Date().getFullYear()} Atharv Dhiman. All rights reserved.</span>
         </div>
       </div>
