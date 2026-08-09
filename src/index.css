@@ -1,12 +1,51 @@
 @import "tailwindcss";
 
-:root {
+/* --------------------------------------------------------------------------
+   THEME DESIGN SYSTEM (Classic, Cyberpunk, Nord, Midnight, Solarized)
+   -------------------------------------------------------------------------- */
+body[data-theme="classic"], :root {
   --bg: 0 0% 4%;
   --surface: 0 0% 8%;
   --text: 0 0% 96%;
   --muted: 0 0% 53%;
   --stroke: 0 0% 12%;
   --accent: 0 0% 96%;
+}
+
+body[data-theme="cyberpunk"] {
+  --bg: 260 60% 4%;
+  --surface: 260 50% 9%;
+  --text: 55 100% 52%;
+  --muted: 320 85% 65%;
+  --stroke: 180 100% 25%;
+  --accent: 180 100% 50%;
+}
+
+body[data-theme="nord"] {
+  --bg: 220 16% 14%;
+  --surface: 220 16% 20%;
+  --text: 218 27% 92%;
+  --muted: 219 14% 71%;
+  --stroke: 220 16% 26%;
+  --accent: 193 43% 67%;
+}
+
+body[data-theme="midnight"] {
+  --bg: 240 25% 5%;
+  --surface: 240 20% 10%;
+  --text: 240 20% 95%;
+  --muted: 240 15% 60%;
+  --stroke: 240 20% 18%;
+  --accent: 265 89% 66%;
+}
+
+body[data-theme="solarized"] {
+  --bg: 192 100% 5%;
+  --surface: 192 80% 9%;
+  --text: 186 24% 88%;
+  --muted: 180 10% 55%;
+  --stroke: 192 50% 15%;
+  --accent: 33 100% 50%;
 }
 
 @theme {
@@ -26,6 +65,7 @@ body {
   color: hsl(var(--text));
   font-family: var(--font-body), sans-serif;
   overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .accent-gradient {

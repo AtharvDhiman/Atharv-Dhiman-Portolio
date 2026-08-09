@@ -5,7 +5,15 @@ import gsap from 'gsap';
 const HLS_VIDEO_URL = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8';
 const MARQUEE_TEXT = 'ATHARV DHIMAN • DATA ANALYST • GENERATIVE AI • ML ENGINEER • ';
 
-export const ContactFooterSection: React.FC = () => {
+interface ContactFooterSectionProps {
+  theme: string;
+  onCycleTheme: () => void;
+}
+
+export const ContactFooterSection: React.FC<ContactFooterSectionProps> = ({
+  theme,
+  onCycleTheme,
+}) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
 
@@ -149,12 +157,22 @@ export const ContactFooterSection: React.FC = () => {
           </a>
         </div>
 
-        {/* Center: Available status badge */}
-        <div className="flex items-center gap-2 bg-surface/80 px-3.5 py-1.5 rounded-full border border-stroke">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-[11px] text-text-primary font-medium">
-            Open for Data Science &amp; AI Roles
-          </span>
+        {/* Center: Theme Cycle Button & Status Badge */}
+        <div className="flex items-center gap-4">
+          <button
+            onClick={onCycleTheme}
+            className="flex items-center gap-1.5 text-[11px] font-mono px-3 py-1.5 rounded-full bg-surface border border-stroke text-text-primary hover:border-white/30 transition-all duration-200 cursor-pointer"
+          >
+            <span className="text-muted">THEME:</span>
+            <span className="font-bold text-accent">{theme.toUpperCase()}</span>
+          </button>
+
+          <div className="flex items-center gap-2 bg-surface/80 px-3.5 py-1.5 rounded-full border border-stroke">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-[11px] text-text-primary font-medium">
+              Open for Data Science &amp; AI Roles
+            </span>
+          </div>
         </div>
 
         {/* Right: Copyright */}

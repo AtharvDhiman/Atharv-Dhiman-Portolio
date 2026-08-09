@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LoadingScreen } from './components/LoadingScreen';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
@@ -10,14 +10,26 @@ import { ContactFooterSection } from './components/ContactFooterSection';
 
 export function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [theme, setTheme] = useState<string>(() => localStorage.getItem('portfolio-theme') || 'classic');
+
+  useEffect(() => {
+    document.body.setAttribute('data-theme', theme);
+    localStorage.setItem('portfolio-theme', theme);
+  }, [theme]);
+
+  const cycleTheme = () => {
+    const themes = ['classic', 'cyberpunk', 'nord', 'midnight', 'solarized'];
+    const nextIndex = (themes.indexOf(theme) + 1) % themes.length;
+    setTheme(themes[nextIndex]);
+  };
 
   return (
-    <div className="bg-bg min-h-screen text-text-primary selection:bg-white/20 selection:text-white">
+    <div className="bg-bg min-h-screen text-text-primary selection:bg-white/20 selection:text-white transition-colors duration-400">
       {isLoading && (
         <LoadingScreen onComplete={() => setIsLoading(false)} />
       )}
 
-      <Navbar />
+      <Navbar theme={theme} onCycleTheme={cycleTheme} />
 
       <main>
         <HeroSection />
@@ -27,7 +39,7 @@ export function App() {
         <StatsSection />
       </main>
 
-      <ContactFooterSection />
+      <ContactFooterSection theme={theme} onCycleTheme={cycleTheme} />
     </div>
   );
 }
