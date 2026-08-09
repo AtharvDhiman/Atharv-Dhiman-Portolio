@@ -169,9 +169,9 @@ export const ContactFooterSection: React.FC<ContactFooterSectionProps> = ({
           </button>
 
           <div className="flex items-center gap-2 bg-surface/80 px-3.5 py-1.5 rounded-full border border-stroke">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
             <span className="text-[11px] text-text-primary font-medium">
-              Open for Data Science &amp; AI Roles
+              Open for Data Analyst, GenAI &amp; ML Roles
             </span>
           </div>
         </div>
