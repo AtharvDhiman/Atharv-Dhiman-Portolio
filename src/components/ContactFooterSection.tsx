@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Hls from 'hls.js';
 import gsap from 'gsap';
+import { Logo } from './Logo';
 
 const HLS_VIDEO_URL = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8';
 const MARQUEE_TEXT = 'ATHARV DHIMAN • DATA ANALYST • GENERATIVE AI • ML ENGINEER • ';
@@ -175,9 +176,10 @@ export const ContactFooterSection: React.FC<ContactFooterSectionProps> = ({
           </div>
         </div>
 
-        {/* Right: Copyright */}
-        <div className="font-mono text-[11px]">
-          © {new Date().getFullYear()} Atharv Dhiman. All rights reserved.
+        {/* Right: Logo & Copyright */}
+        <div className="flex items-center gap-3 font-mono text-[11px]">
+          <Logo size={24} />
+          <span>© {new Date().getFullYear()} Atharv Dhiman. All rights reserved.</span>
         </div>
       </div>
     </footer>

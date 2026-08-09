@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Hls from 'hls.js';
 import gsap from 'gsap';
+import { Logo } from './Logo';
 
 const HLS_VIDEO_URL = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8';
 const ROLES = [
@@ -106,6 +107,11 @@ export const HeroSection: React.FC = () => {
 
       {/* Hero Content (Centered, z-10) */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center flex flex-col items-center pt-16">
+        {/* Animated Logo Badge */}
+        <div className="blur-in mb-4 hover:scale-105 transition-transform duration-300">
+          <Logo size={64} />
+        </div>
+
         {/* Eyebrow */}
         <span className="blur-in inline-block text-xs text-muted uppercase tracking-[0.3em] mb-6 font-medium">
           DATA ANALYST &amp; GENERATIVE AI // ABES IT '27

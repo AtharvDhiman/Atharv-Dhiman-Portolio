@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Logo } from './Logo';
 
 interface NavbarProps {
   activeSection?: string;
@@ -44,14 +45,13 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* 1. Logo Circle */}
         <button
           onClick={() => scrollToSection('hero')}
-          className="group relative flex items-center justify-center w-9 h-9 rounded-full p-[1px] transition-transform duration-300 hover:scale-110 shrink-0"
+          className="group relative flex items-center justify-center w-10 h-10 rounded-full p-[1px] transition-transform duration-300 hover:scale-110 shrink-0 cursor-pointer"
+          title="Atharv Dhiman — Home"
         >
           {/* Accent gradient border (reverses on hover) */}
           <div className="absolute inset-0 rounded-full accent-gradient transition-transform duration-500 group-hover:rotate-180" />
-          <div className="relative z-10 w-full h-full bg-bg rounded-full flex items-center justify-center">
-            <span className="font-display italic text-[13px] text-text-primary font-bold tracking-tighter">
-              AD
-            </span>
+          <div className="relative z-10 w-full h-full bg-bg rounded-full flex items-center justify-center overflow-hidden p-0.5">
+            <Logo size="100%" />
           </div>
         </button>
 

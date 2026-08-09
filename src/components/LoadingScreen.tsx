@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Logo } from './Logo';
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -54,14 +55,17 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
       transition={{ duration: 0.4, ease: 'easeOut' }}
       className="fixed inset-0 z-[9999] bg-bg flex flex-col justify-between p-8 md:p-14 select-none overflow-hidden"
     >
-      {/* Top Left Label */}
+      {/* Top Left Header with Logo */}
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="text-xs text-muted uppercase tracking-[0.3em] font-medium"
+        className="flex items-center gap-3"
       >
-        Portfolio
+        <Logo size={36} />
+        <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
+          Atharv Dhiman Portfolio
+        </span>
       </motion.div>
 
       {/* Center Rotating Words */}

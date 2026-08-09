@@ -13,6 +13,7 @@ export function App() {
   const [theme, setTheme] = useState<string>(() => localStorage.getItem('portfolio-theme') || 'classic');
 
   useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
     document.body.setAttribute('data-theme', theme);
     localStorage.setItem('portfolio-theme', theme);
   }, [theme]);
