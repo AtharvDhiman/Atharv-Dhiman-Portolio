@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 interface Project {
@@ -9,48 +9,68 @@ interface Project {
   colSpan: string;
   aspectRatio: string;
   imageUrl: string;
+  demoUrl?: string;
+  description: string;
+  highlights: string[];
+  skills: string[];
 }
 
 const PROJECTS: Project[] = [
   {
-    id: 'automotive-motion',
-    title: 'Automotive Motion',
-    category: '3D Simulation & WebGL',
+    id: 'finrisk',
+    title: 'FinRisk — Credit Risk & Smart Loan Engine',
+    category: 'BEL Internship Project',
     year: '2026',
     colSpan: 'md:col-span-7',
     aspectRatio: 'aspect-[16/10]',
-    imageUrl: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: '/projects/finrisk.jpg',
+    demoUrl: 'https://fin-risk-credit-risk-and-loan-recom-five.vercel.app',
+    description: 'Sole owner of an end-to-end credit risk assessment brief at Bharat Electronics Limited (BEL) R&D. Scored 51,336 applicant records merged from internal bank systems and CIBIL bureau data into four risk tiers (P1–P4) with FOIR guardrails.',
+    highlights: ['99.4% Accuracy (F1 0.989)', '51,336 Applicants Scored', 'Power BI Star-Schema Export'],
+    skills: ['Python', 'Flask', 'Scikit-Learn', 'PostgreSQL', 'Power BI'],
   },
   {
-    id: 'urban-architecture',
-    title: 'Urban Architecture',
-    category: 'Spatial Design',
-    year: '2025',
+    id: 'retainai',
+    title: 'RetainAI — Employee Flight Risk Platform',
+    category: 'Predictive HR & GenAI',
+    year: '2026',
     colSpan: 'md:col-span-5',
     aspectRatio: 'aspect-[4/3]',
-    imageUrl: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=900&q=80',
+    imageUrl: '/projects/retainai.jpg',
+    demoUrl: 'https://employee-attrition-system.vercel.app/',
+    description: 'Cloud-deployed predictive analytics platform forecasting employee flight risk at 91.6% accuracy. Features an integrated HR AI Chatbot answering natural-language queries over structured dataset metrics.',
+    highlights: ['91.6% Flight Risk Accuracy', 'Natural-Language Query Chatbot', 'Batch CSV Processor'],
+    skills: ['Python', 'Flask', 'Scikit-Learn', 'Chart.js', 'PostgreSQL'],
   },
   {
-    id: 'human-perspective',
-    title: 'Human Perspective',
-    category: 'AI Generative Systems',
-    year: '2025',
+    id: 'hyperliquid',
+    title: 'Hyperliquid DEX Sentiment Alpha Pipeline',
+    category: 'Quantitative Analytics',
+    year: '2026',
     colSpan: 'md:col-span-5',
     aspectRatio: 'aspect-[4/3]',
-    imageUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=900&q=80',
+    imageUrl: '/projects/hyperliquid.jpg',
+    description: 'Evaluated 211,224 trades from 32 accounts on Hyperliquid DEX. Mapped retail sentiment (Crypto Fear & Greed Index) to trader behavior, uncovering 6.43x reward-to-risk ratio asymmetry and shorting alpha.',
+    highlights: ['211,224 Trades Mapped', '6.43x Risk/Reward Ratio', '$10.2M Net Profit Analyzed'],
+    skills: ['Python', 'SQLite', 'Pandas', 'Seaborn', 'Streamlit'],
   },
   {
-    id: 'brand-identity',
-    title: 'Brand Identity',
-    category: 'Digital Product',
+    id: 'resume',
+    title: 'AI Resume Screening & Hiring Intelligence',
+    category: 'NLP Text Classification',
     year: '2026',
     colSpan: 'md:col-span-7',
     aspectRatio: 'aspect-[16/10]',
-    imageUrl: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: '/projects/resume.jpg',
+    description: 'End-to-end recruitment analytics and candidate evaluation pipeline using TF-IDF vectorization and Logistic Regression. Standardizes resume text parsing to score candidate hiring probability.',
+    highlights: ['60% Screening Time Reduction', '85%+ Classification Accuracy', 'Power BI Pipeline Report'],
+    skills: ['Python', 'NLP', 'Scikit-Learn', 'NumPy', 'Power BI'],
   },
 ];
 
 export const SelectedWorksSection: React.FC = () => {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
   return (
     <section id="works" className="bg-bg py-16 md:py-24 relative select-none">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
@@ -67,31 +87,20 @@ export const SelectedWorksSection: React.FC = () => {
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-px bg-stroke" />
               <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
-                Selected Work
+                Featured Engineering &amp; Analytics
               </span>
             </div>
 
             {/* Heading */}
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-text-primary tracking-tight">
-              Featured <span className="font-display italic text-text-primary">projects</span>
+              Selected <span className="font-display italic text-text-primary">projects</span>
             </h2>
           </div>
 
           <div className="flex flex-col md:items-end gap-3">
             <p className="text-sm text-muted max-w-sm font-normal">
-              A selection of projects I've worked on, from concept to launch.
+              Machine learning models, credit analytics pipelines, and Generative AI interfaces deployed to cloud runtimes.
             </p>
-
-            {/* "View all work" button (desktop only) */}
-            <a
-              href="#works"
-              className="hidden md:inline-flex items-center gap-2 group p-[1px] rounded-full mt-2"
-            >
-              <div className="relative z-10 flex items-center gap-2 bg-surface px-5 py-2.5 rounded-full border border-stroke text-xs text-text-primary hover:border-transparent group-hover:bg-bg transition-all duration-300">
-                <span>View all work</span>
-                <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">→</span>
-              </div>
-            </a>
           </div>
         </motion.div>
 
@@ -104,6 +113,7 @@ export const SelectedWorksSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
               viewport={{ once: true, margin: '-50px' }}
+              onClick={() => setSelectedProject(project)}
               className={`group relative overflow-hidden bg-surface border border-stroke rounded-3xl ${project.colSpan} cursor-pointer`}
             >
               <div className={`w-full ${project.aspectRatio} relative overflow-hidden`}>
@@ -118,32 +128,144 @@ export const SelectedWorksSection: React.FC = () => {
                 <div className="absolute inset-0 halftone-overlay opacity-20 mix-blend-multiply pointer-events-none" />
 
                 {/* Card Top Information */}
-                <div className="absolute top-6 left-6 right-6 flex items-center justify-between z-10 text-xs font-mono text-white/80">
-                  <span className="bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                <div className="absolute top-6 left-6 right-6 flex items-center justify-between z-10 text-xs font-mono text-white/90">
+                  <span className="bg-black/60 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/15">
                     {project.category}
                   </span>
-                  <span className="bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                  <span className="bg-black/60 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/15">
                     {project.year}
                   </span>
                 </div>
 
                 {/* Hover Backdrop Overlay with Animated Gradient Pill Label */}
-                <div className="absolute inset-0 bg-bg/75 opacity-0 group-hover:opacity-100 transition-all duration-400 backdrop-blur-md flex items-center justify-center p-6 z-20">
+                <div className="absolute inset-0 bg-bg/80 opacity-0 group-hover:opacity-100 transition-all duration-400 backdrop-blur-md flex flex-col items-center justify-center p-6 z-20 text-center">
+                  {/* Highlights pills */}
+                  <div className="flex flex-wrap justify-center gap-2 mb-4 max-w-md">
+                    {project.highlights.map((h, i) => (
+                      <span key={i} className="text-[11px] font-mono bg-surface border border-stroke px-2.5 py-1 rounded-full text-text-primary">
+                        {h}
+                      </span>
+                    ))}
+                  </div>
+
                   {/* Pill with animated gradient border */}
                   <div className="relative p-[1.5px] rounded-full accent-gradient animate-gradient-shift transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     <div className="bg-white text-black px-6 py-3 rounded-full text-sm font-medium shadow-xl flex items-center gap-2">
-                      <span>View —</span>
+                      <span>View Details —</span>
                       <span className="font-display italic font-semibold text-base">
-                        {project.title}
+                        {project.title.split('—')[0].trim()}
                       </span>
                     </div>
                   </div>
                 </div>
               </div>
+
+              {/* Bottom Card Title Bar */}
+              <div className="p-6 bg-surface border-t border-stroke/60 flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-medium text-text-primary mb-1">
+                    {project.title}
+                  </h3>
+                  <div className="flex items-center gap-2">
+                    {project.skills.map((skill) => (
+                      <span key={skill} className="text-[10px] font-mono text-muted">
+                        • {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                {project.demoUrl && (
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-3 py-1.5 rounded-full hover:bg-emerald-900 transition-colors"
+                  >
+                    Live Demo ↗
+                  </a>
+                )}
+              </div>
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Project Details Lightbox Modal */}
+      {selectedProject && (
+        <div
+          onClick={() => setSelectedProject(null)}
+          className="fixed inset-0 z-[999] bg-black/90 backdrop-blur-xl flex items-center justify-center p-6 cursor-zoom-out animate-fadeIn overflow-y-auto"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-3xl w-full bg-surface border border-stroke rounded-3xl overflow-hidden shadow-2xl p-6 md:p-8 cursor-default my-8"
+          >
+            <button
+              onClick={() => setSelectedProject(null)}
+              className="absolute top-6 right-6 z-10 w-9 h-9 rounded-full bg-bg/80 border border-stroke text-white flex items-center justify-center text-sm hover:bg-white hover:text-black transition-colors"
+            >
+              ✕
+            </button>
+
+            {/* Modal Image Header */}
+            <div className="relative aspect-video w-full rounded-2xl overflow-hidden mb-6 border border-stroke">
+              <img
+                src={selectedProject.imageUrl}
+                alt={selectedProject.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <span className="text-xs font-mono text-accent uppercase tracking-widest">
+              {selectedProject.category} // {selectedProject.year}
+            </span>
+
+            <h3 className="text-2xl md:text-3xl font-display italic text-text-primary mt-1 mb-4">
+              {selectedProject.title}
+            </h3>
+
+            <p className="text-sm text-muted leading-relaxed mb-6 font-normal">
+              {selectedProject.description}
+            </p>
+
+            <div className="mb-6">
+              <h4 className="text-xs font-mono text-text-primary uppercase tracking-wider mb-2">
+                Key Metrics &amp; Implementations
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {selectedProject.highlights.map((h, i) => (
+                  <span key={i} className="text-xs font-mono bg-bg border border-stroke px-3 py-1.5 rounded-full text-emerald-400">
+                    ✓ {h}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between pt-4 border-t border-stroke/60">
+              <div className="flex flex-wrap gap-2">
+                {selectedProject.skills.map((s) => (
+                  <span key={s} className="text-xs font-mono bg-surface border border-stroke px-3 py-1 rounded-full text-muted">
+                    {s}
+                  </span>
+                ))}
+              </div>
+
+              {selectedProject.demoUrl && (
+                <a
+                  href={selectedProject.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 accent-gradient text-bg font-medium px-5 py-2.5 rounded-full text-xs hover:opacity-90 transition-opacity"
+                >
+                  <span>Launch Live App</span>
+                  <span>↗</span>
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

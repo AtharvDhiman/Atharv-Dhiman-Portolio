@@ -1,50 +1,45 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-interface JournalEntry {
-  id: string;
+interface Certification {
   title: string;
-  readTime: string;
+  issuer: string;
   date: string;
-  imageUrl: string;
+  badgeColor: string;
 }
 
-const JOURNAL_ENTRIES: JournalEntry[] = [
+const CERTIFICATIONS: Certification[] = [
   {
-    id: '1',
-    title: 'The Art of Micro-Interactions in Modern Interfaces',
-    readTime: '4 min read',
-    date: 'Jan 2026',
-    imageUrl: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=200&q=80',
+    title: 'Oracle Cloud Infrastructure 2025 Certified Data Science Professional',
+    issuer: 'Oracle University',
+    date: 'Aug 2025',
+    badgeColor: 'text-amber-400 border-amber-900 bg-amber-950/40',
   },
   {
-    id: '2',
-    title: 'Scaling Generative UI Systems with Motion Physics',
-    readTime: '6 min read',
-    date: 'Dec 2025',
-    imageUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=200&q=80',
+    title: 'Data Analytics Job Simulation',
+    issuer: 'Deloitte Australia (Forage)',
+    date: 'Jan – Jun 2026',
+    badgeColor: 'text-emerald-400 border-emerald-900 bg-emerald-950/40',
   },
   {
-    id: '3',
-    title: 'Designing for Silence: Minimalism in Digital Workspaces',
-    readTime: '5 min read',
-    date: 'Nov 2025',
-    imageUrl: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=200&q=80',
+    title: 'Data Analytics with Generative AI',
+    issuer: 'Simplilearn SkillUp',
+    date: 'Aug 2026',
+    badgeColor: 'text-cyan-400 border-cyan-900 bg-cyan-950/40',
   },
   {
-    id: '4',
-    title: 'Why Typography Shapes the Unconscious User Journey',
-    readTime: '3 min read',
-    date: 'Oct 2025',
-    imageUrl: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=200&q=80',
+    title: 'SQL (Basic) Certificate',
+    issuer: 'HackerRank',
+    date: 'Aug 2025',
+    badgeColor: 'text-purple-400 border-purple-900 bg-purple-950/40',
   },
 ];
 
 export const JournalSection: React.FC = () => {
   return (
-    <section className="bg-bg py-16 md:py-24 relative select-none">
+    <section id="experience" className="bg-bg py-16 md:py-24 relative select-none">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
-        {/* Header */}
+        {/* Experience Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -57,73 +52,155 @@ export const JournalSection: React.FC = () => {
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-px bg-stroke" />
               <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
-                Journal & Notes
+                Experience &amp; Industry Placement
               </span>
             </div>
 
             {/* Heading */}
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-text-primary tracking-tight">
-              Recent <span className="font-display italic text-text-primary">thoughts</span>
+              Defence PSU <span className="font-display italic text-text-primary">experience</span>
             </h2>
           </div>
 
           <div className="flex flex-col md:items-end gap-3">
             <p className="text-sm text-muted max-w-sm font-normal">
-              Explorations, essays, and architectural design breakdowns.
+              Applied data analytics &amp; machine learning R&amp;D at Bharat Electronics Limited (BEL).
             </p>
+          </div>
+        </motion.div>
 
-            {/* "View all" button */}
+        {/* Featured Internship Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="p-8 md:p-10 bg-surface/40 border border-stroke rounded-3xl mb-16 relative overflow-hidden group hover:border-stroke/80 transition-all duration-300"
+        >
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 border-b border-stroke/60 pb-6">
+            <div>
+              <span className="text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-3 py-1 rounded-full">
+                IT Intern — Central Research Laboratory (CRL)
+              </span>
+              <h3 className="text-2xl md:text-3xl font-display italic text-text-primary mt-2">
+                Bharat Electronics Limited (BEL), Ghaziabad
+              </h3>
+            </div>
+            <span className="text-xs font-mono text-muted bg-bg px-4 py-2 rounded-full border border-stroke shrink-0">
+              Jul – Aug 2026
+            </span>
+          </div>
+
+          <p className="text-sm text-muted leading-relaxed mb-6 font-normal">
+            Sole owner of an end-to-end credit risk brief at BEL's Central Research Laboratory, taking raw data to a deployed scoring application inside a one-month placement.
+          </p>
+
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-normal text-text-primary/90 mb-6">
+            <li className="flex items-start gap-2 bg-bg/50 p-3.5 rounded-2xl border border-stroke/50">
+              <span className="text-emerald-400 font-bold">•</span>
+              <span>Built pipeline over 51,336 applicant records merged from internal bank systems and CIBIL bureau data into four risk tiers (P1–P4).</span>
+            </li>
+            <li className="flex items-start gap-2 bg-bg/50 p-3.5 rounded-2xl border border-stroke/50">
+              <span className="text-emerald-400 font-bold">•</span>
+              <span>Engineered domain features and pruned 19 redundant columns; Gradient Boosting achieved 99.4% accuracy (F1 0.989).</span>
+            </li>
+            <li className="flex items-start gap-2 bg-bg/50 p-3.5 rounded-2xl border border-stroke/50">
+              <span className="text-emerald-400 font-bold">•</span>
+              <span>Discovered approval was credit history driven (85-91% approval across income bands with boundary near 650-660 score).</span>
+            </li>
+            <li className="flex items-start gap-2 bg-bg/50 p-3.5 rounded-2xl border border-stroke/50">
+              <span className="text-emerald-400 font-bold">•</span>
+              <span>Implemented FOIR (≤30%) guardrails, real-time Flask dashboard, debt simulation, and Power BI star-schema export.</span>
+            </li>
+          </ul>
+
+          <div className="flex items-center justify-between pt-2">
+            <div className="flex flex-wrap gap-2">
+              {['Python', 'Flask', 'scikit-learn', 'PostgreSQL', 'Power BI'].map((tech) => (
+                <span key={tech} className="text-[11px] font-mono text-muted bg-surface px-3 py-1 rounded-full border border-stroke">
+                  {tech}
+                </span>
+              ))}
+            </div>
             <a
-              href="#journal"
-              className="hidden md:inline-flex items-center gap-2 group p-[1px] rounded-full mt-2"
+              href="https://fin-risk-credit-risk-and-loan-recom-five.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-mono text-emerald-400 hover:underline flex items-center gap-1"
             >
-              <div className="relative z-10 flex items-center gap-2 bg-surface px-5 py-2.5 rounded-full border border-stroke text-xs text-text-primary hover:border-transparent group-hover:bg-bg transition-all duration-300">
-                <span>View all essays</span>
-                <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">→</span>
-              </div>
+              <span>Live FinRisk Demo</span>
+              <span>↗</span>
             </a>
           </div>
         </motion.div>
 
-        {/* 4 Horizontal Pill Entries */}
-        <div className="flex flex-col gap-4">
-          {JOURNAL_ENTRIES.map((entry, index) => (
-            <motion.div
-              key={entry.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 md:p-5 bg-surface/30 hover:bg-surface border border-stroke hover:border-white/20 rounded-[30px] sm:rounded-full transition-all duration-300 cursor-pointer"
-            >
-              <div className="flex items-center gap-4 md:gap-6">
-                {/* Thumbnail Image */}
-                <div className="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden shrink-0 border border-stroke group-hover:border-accent transition-colors duration-300">
-                  <img
-                    src={entry.imageUrl}
-                    alt={entry.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
+        {/* Education & Certifications Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Education Column (5 cols) */}
+          <div className="lg:col-span-5 flex flex-col gap-6">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-6 h-px bg-stroke" />
+              <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
+                Academic Background
+              </span>
+            </div>
+
+            <div className="p-6 bg-surface/30 border border-stroke rounded-3xl">
+              <span className="text-xs font-mono text-accent">Oct 2023 – Jul 2027</span>
+              <h4 className="text-lg font-medium text-text-primary mt-1">
+                B.Tech, Information Technology
+              </h4>
+              <p className="text-xs text-muted mt-1">
+                ABES Engineering College (AKTU), Ghaziabad
+              </p>
+            </div>
+
+            <div className="p-6 bg-surface/30 border border-stroke rounded-3xl">
+              <span className="text-xs font-mono text-muted">2022</span>
+              <h4 className="text-lg font-medium text-text-primary mt-1">
+                Class 12th (CBSE) — Science &amp; Math
+              </h4>
+              <p className="text-xs text-muted mt-1">
+                Cambridge International School · 67.6%
+              </p>
+            </div>
+          </div>
+
+          {/* Certifications Column (7 cols) */}
+          <div className="lg:col-span-7 flex flex-col gap-4">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-6 h-px bg-stroke" />
+              <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
+                Verified Certifications
+              </span>
+            </div>
+
+            {CERTIFICATIONS.map((cert, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="flex items-center justify-between p-4 md:p-5 bg-surface/30 hover:bg-surface border border-stroke rounded-2xl transition-all duration-200"
+              >
+                <div>
+                  <h4 className="text-sm font-medium text-text-primary">
+                    {cert.title}
+                  </h4>
+                  <span className="text-xs text-muted font-normal">
+                    {cert.issuer}
+                  </span>
                 </div>
 
-                {/* Title */}
-                <h3 className="text-base md:text-lg font-medium text-text-primary group-hover:text-white transition-colors duration-200">
-                  {entry.title}
-                </h3>
-              </div>
-
-              {/* Metadata & Action */}
-              <div className="flex items-center gap-6 text-xs text-muted ml-16 sm:ml-0">
-                <span className="font-mono bg-bg/60 px-3 py-1 rounded-full border border-stroke">
-                  {entry.readTime}
-                </span>
-                <span className="font-mono text-muted">{entry.date}</span>
-                <div className="w-8 h-8 rounded-full border border-stroke flex items-center justify-center text-text-primary group-hover:bg-text-primary group-hover:text-bg transition-all duration-300">
-                  ↗
+                <div className="flex items-center gap-3 shrink-0 ml-4">
+                  <span className={`text-[10px] font-mono px-3 py-1 rounded-full border ${cert.badgeColor}`}>
+                    {cert.date}
+                  </span>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

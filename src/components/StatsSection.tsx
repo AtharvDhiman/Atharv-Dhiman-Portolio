@@ -9,19 +9,19 @@ interface StatItem {
 
 const STATS: StatItem[] = [
   {
-    value: '20+',
-    label: 'Years Experience',
-    sublabel: 'Crafting digital products',
+    value: '51,336+',
+    label: 'Applicants Scored',
+    sublabel: 'Bharat Electronics Ltd (BEL) credit pipeline',
   },
   {
-    value: '95+',
-    label: 'Projects Done',
-    sublabel: 'From concept to production',
+    value: '99.4%',
+    label: 'ML Model Accuracy',
+    sublabel: 'Gradient Boosting (F1 0.989) on BEL FinRisk',
   },
   {
-    value: '200%',
-    label: 'Satisfied Clients',
-    sublabel: 'Delivering exceptional impact',
+    value: '91.6%',
+    label: 'RetainAI Accuracy',
+    sublabel: 'Employee flight risk forecasting runtime',
   },
 ];
 
@@ -42,10 +42,10 @@ export const StatsSection: React.FC = () => {
               {/* Subtle background glow */}
               <div className="absolute -right-8 -bottom-8 w-32 h-32 accent-gradient rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
 
-              <span className="text-5xl md:text-6xl lg:text-7xl font-display italic text-text-primary mb-4 tracking-tight">
+              <span className="text-4xl md:text-5xl lg:text-6xl font-display italic text-text-primary mb-3 tracking-tight">
                 {stat.value}
               </span>
-              <h3 className="text-lg font-medium text-text-primary mb-1">
+              <h3 className="text-base md:text-lg font-medium text-text-primary mb-1">
                 {stat.label}
               </h3>
               <p className="text-xs text-muted font-normal">

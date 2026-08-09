@@ -4,56 +4,70 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface ExplorationItem {
+interface SkillItem {
   id: string;
   title: string;
   category: string;
   imageUrl: string;
   rotation: string;
+  description: string;
+  tags: string[];
 }
 
-const EXPLORATIONS: ExplorationItem[] = [
+const SKILLS_PLAYGROUND: SkillItem[] = [
   {
-    id: 'exp-1',
-    title: 'Neon Kinetic Fluid Dynamics',
-    category: '3D & Shader Experiment',
+    id: 'skill-1',
+    title: 'Generative AI & LLM Query Interfaces',
+    category: 'Generative AI',
     imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
     rotation: '-rotate-3',
+    description: 'Building natural-language query interfaces over structured datasets using LLM APIs, prompt engineering, and conversational AI assistants.',
+    tags: ['LLM APIs', 'Prompt Engineering', 'NL-to-SQL', 'LangChain'],
   },
   {
-    id: 'exp-2',
-    title: 'Glassmorphism Design Systems',
-    category: 'Interface Exploration',
+    id: 'skill-2',
+    title: 'Machine Learning Classifiers & Models',
+    category: 'Machine Learning',
     imageUrl: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80',
     rotation: 'rotate-2',
+    description: 'Cross-validated model pipelines comparing Logistic Regression, Random Forest, and Gradient Boosting with SMOTE class balancing.',
+    tags: ['scikit-learn', 'Gradient Boosting', 'SMOTE', 'Feature Importance'],
   },
   {
-    id: 'exp-3',
-    title: 'Monochrome Parametric Mesh',
-    category: 'Procedural Geometry',
+    id: 'skill-3',
+    title: 'PostgreSQL & Star-Schema Data Warehousing',
+    category: 'Languages & Databases',
     imageUrl: 'https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&w=800&q=80',
     rotation: '-rotate-2',
+    description: 'Designing relational SQL schemas, optimizing indexing, Power Query transformations, and exporting star-schemas for BI platforms.',
+    tags: ['PostgreSQL', 'SQLite', 'DAX Modeling', 'Power Query'],
   },
   {
-    id: 'exp-4',
-    title: 'Chromatic Particle System',
-    category: 'WebGL Physics',
+    id: 'skill-4',
+    title: 'Exploratory Data Analysis & Feature Engineering',
+    category: 'Data & Analytics',
     imageUrl: 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=800&q=80',
     rotation: 'rotate-3',
+    description: 'Statistical correlation testing (Chi-Square, correlation matrices), FOIR ratio calculations, and debt-to-income indexation.',
+    tags: ['pandas', 'NumPy', 'SciPy', 'Statistical Testing'],
   },
   {
-    id: 'exp-5',
-    title: 'Abstract Organic Sculptures',
-    category: 'AI Generative Modeling',
+    id: 'skill-5',
+    title: 'Power BI & Interactive Visualizations',
+    category: 'BI & Visualisation',
     imageUrl: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80',
     rotation: '-rotate-1',
+    description: 'Interactive dashboard reports, demographic cohort breakdown, Chart.js analytics charts, Seaborn correlation heatmaps.',
+    tags: ['Power BI', 'Chart.js', 'Seaborn', 'Matplotlib'],
   },
   {
-    id: 'exp-6',
-    title: 'Cybernetic HUD Interface',
-    category: 'Framer Motion Prototype',
+    id: 'skill-6',
+    title: 'Flask Web Apps & Serverless Deployments',
+    category: 'Web & Deployment',
     imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
     rotation: 'rotate-2',
+    description: 'Shipping real-time prediction microservices with Flask APIs deployed on Vercel and Render with automated CI/CD pipelines.',
+    tags: ['Flask', 'JavaScript', 'Tailwind CSS', 'Vercel', 'Render'],
   },
 ];
 
@@ -62,7 +76,7 @@ export const ExplorationsSection: React.FC = () => {
   const pinnedRef = useRef<HTMLDivElement>(null);
   const colLeftRef = useRef<HTMLDivElement>(null);
   const colRightRef = useRef<HTMLDivElement>(null);
-  const [activeItem, setActiveItem] = useState<ExplorationItem | null>(null);
+  const [activeItem, setActiveItem] = useState<SkillItem | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -75,13 +89,13 @@ export const ExplorationsSection: React.FC = () => {
         end: 'bottom bottom',
       });
 
-      // 2. Parallax left column (moves slower)
+      // 2. Parallax left column
       if (colLeftRef.current) {
         gsap.fromTo(
           colLeftRef.current,
           { y: '0px' },
           {
-            y: '-250px',
+            y: '-220px',
             ease: 'none',
             scrollTrigger: {
               trigger: sectionRef.current,
@@ -93,13 +107,13 @@ export const ExplorationsSection: React.FC = () => {
         );
       }
 
-      // 3. Parallax right column (moves faster)
+      // 3. Parallax right column
       if (colRightRef.current) {
         gsap.fromTo(
           colRightRef.current,
-          { y: '120px' },
+          { y: '100px' },
           {
-            y: '-450px',
+            y: '-400px',
             ease: 'none',
             scrollTrigger: {
               trigger: sectionRef.current,
@@ -115,13 +129,14 @@ export const ExplorationsSection: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-  const colLeft = EXPLORATIONS.filter((_, i) => i % 2 === 0);
-  const colRight = EXPLORATIONS.filter((_, i) => i % 2 !== 0);
+  const colLeft = SKILLS_PLAYGROUND.filter((_, i) => i % 2 === 0);
+  const colRight = SKILLS_PLAYGROUND.filter((_, i) => i % 2 !== 0);
 
   return (
     <section
+      id="skills"
       ref={sectionRef}
-      className="relative min-h-[250vh] bg-bg py-24 select-none overflow-hidden"
+      className="relative min-h-[240vh] bg-bg py-24 select-none overflow-hidden"
     >
       {/* Layer 1: Pinned Center Title (z-10) */}
       <div
@@ -133,28 +148,28 @@ export const ExplorationsSection: React.FC = () => {
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="w-8 h-px bg-stroke" />
             <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
-              Explorations
+              Technical Competencies
             </span>
             <div className="w-8 h-px bg-stroke" />
           </div>
 
           {/* Heading */}
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-normal text-text-primary tracking-tight mb-4">
-            Visual <span className="font-display italic text-text-primary">playground</span>
+            Skills <span className="font-display italic text-text-primary">matrix</span>
           </h2>
 
           <p className="text-sm text-muted max-w-sm mx-auto mb-8 font-normal">
-            Experimental UI concepts, 3D shaders, and interaction prototypes.
+            Languages, ML algorithms, Generative AI interfaces, and BI tools.
           </p>
 
           <a
-            href="https://dribbble.com"
+            href="https://github.com/AtharvDhiman"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 group p-[2px] rounded-full"
           >
             <div className="relative z-10 flex items-center gap-2 bg-surface px-6 py-3 rounded-full border border-stroke text-xs text-text-primary hover:border-transparent group-hover:bg-bg transition-all duration-300">
-              <span>View Dribbble</span>
+              <span>View GitHub Repositories</span>
               <span className="text-sm transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                 ↗
               </span>
@@ -163,7 +178,7 @@ export const ExplorationsSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Layer 2: Parallax Columns (z-20, absolute overlay) */}
+      {/* Layer 2: Parallax Columns (z-20) */}
       <div className="relative z-20 max-w-[1200px] mx-auto px-6 pt-32">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-32 items-start">
           {/* Left Column */}
@@ -177,13 +192,20 @@ export const ExplorationsSection: React.FC = () => {
                 <img
                   src={item.imageUrl}
                   alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-bg/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end">
-                  <span className="text-[10px] font-mono text-accent uppercase tracking-widest mb-1">
+                <div className="absolute inset-0 bg-gradient-to-t from-bg/95 via-bg/40 to-transparent p-6 flex flex-col justify-end">
+                  <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest mb-1">
                     {item.category}
                   </span>
-                  <h3 className="text-sm font-medium text-white">{item.title}</h3>
+                  <h3 className="text-sm font-medium text-white mb-2">{item.title}</h3>
+                  <div className="flex flex-wrap gap-1">
+                    {item.tags.slice(0, 3).map((t) => (
+                      <span key={t} className="text-[9px] font-mono bg-black/60 px-2 py-0.5 rounded text-muted">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
@@ -200,13 +222,20 @@ export const ExplorationsSection: React.FC = () => {
                 <img
                   src={item.imageUrl}
                   alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-bg/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end">
-                  <span className="text-[10px] font-mono text-accent uppercase tracking-widest mb-1">
+                <div className="absolute inset-0 bg-gradient-to-t from-bg/95 via-bg/40 to-transparent p-6 flex flex-col justify-end">
+                  <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest mb-1">
                     {item.category}
                   </span>
-                  <h3 className="text-sm font-medium text-white">{item.title}</h3>
+                  <h3 className="text-sm font-medium text-white mb-2">{item.title}</h3>
+                  <div className="flex flex-wrap gap-1">
+                    {item.tags.slice(0, 3).map((t) => (
+                      <span key={t} className="text-[9px] font-mono bg-black/60 px-2 py-0.5 rounded text-muted">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
@@ -222,7 +251,7 @@ export const ExplorationsSection: React.FC = () => {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative max-w-2xl w-full bg-surface border border-stroke rounded-3xl overflow-hidden shadow-2xl p-4"
+            className="relative max-w-xl w-full bg-surface border border-stroke rounded-3xl overflow-hidden shadow-2xl p-6 cursor-default"
           >
             <button
               onClick={() => setActiveItem(null)}
@@ -230,18 +259,21 @@ export const ExplorationsSection: React.FC = () => {
             >
               ✕
             </button>
-            <img
-              src={activeItem.imageUrl}
-              alt={activeItem.title}
-              className="w-full aspect-video object-cover rounded-2xl mb-4"
-            />
-            <div className="p-2">
-              <span className="text-xs font-mono text-accent uppercase tracking-widest">
-                {activeItem.category}
-              </span>
-              <h3 className="text-xl font-display italic text-text-primary mt-1">
-                {activeItem.title}
-              </h3>
+            <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest">
+              {activeItem.category}
+            </span>
+            <h3 className="text-2xl font-display italic text-text-primary mt-1 mb-3">
+              {activeItem.title}
+            </h3>
+            <p className="text-xs text-muted leading-relaxed mb-4">
+              {activeItem.description}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {activeItem.tags.map((t) => (
+                <span key={t} className="text-xs font-mono bg-bg border border-stroke px-3 py-1 rounded-full text-emerald-400">
+                  {t}
+                </span>
+              ))}
             </div>
           </div>
         </div>
