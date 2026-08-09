@@ -87,7 +87,7 @@ export const HeroSection: React.FC = () => {
     <section
       id="hero"
       ref={heroRef}
-      className="relative w-full h-screen min-h-[720px] flex items-center justify-center overflow-hidden select-none"
+      className="relative w-full min-h-screen py-16 flex flex-col items-center justify-between overflow-hidden select-none"
     >
       {/* Background HLS Video */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -106,24 +106,24 @@ export const HeroSection: React.FC = () => {
       </div>
 
       {/* Hero Content (Centered, z-10) */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center flex flex-col items-center pt-16">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center flex flex-col items-center my-auto pt-12 md:pt-16 pb-6">
         {/* Animated Logo Badge */}
-        <div className="blur-in mb-4 hover:scale-105 transition-transform duration-300">
-          <Logo size={64} />
+        <div className="blur-in mb-3 hover:scale-105 transition-transform duration-300">
+          <Logo size={56} />
         </div>
 
         {/* Eyebrow */}
-        <span className="blur-in inline-block text-xs text-muted uppercase tracking-[0.3em] mb-6 font-medium">
+        <span className="blur-in inline-block text-xs text-muted uppercase tracking-[0.3em] mb-4 font-medium">
           DATA ANALYST &amp; GENERATIVE AI // ABES IT '27
         </span>
 
         {/* Name */}
-        <h1 className="name-reveal text-6xl md:text-8xl lg:text-9xl font-display italic leading-[0.9] tracking-tight text-text-primary mb-6">
+        <h1 className="name-reveal text-5xl md:text-7xl lg:text-8xl font-display italic leading-[0.95] tracking-tight text-text-primary mb-4">
           Atharv Dhiman
         </h1>
 
         {/* Role line */}
-        <div className="blur-in text-base md:text-lg text-text-primary/90 mb-4 h-8 flex items-center justify-center gap-2 font-light">
+        <div className="blur-in text-base md:text-lg text-text-primary/90 mb-3 h-8 flex items-center justify-center gap-2 font-light">
           <span>A</span>
           <span
             key={roleIndex}
@@ -135,7 +135,7 @@ export const HeroSection: React.FC = () => {
         </div>
 
         {/* Description */}
-        <p className="blur-in text-sm md:text-base text-muted max-w-lg mb-10 font-normal leading-relaxed">
+        <p className="blur-in text-xs md:text-sm text-muted max-w-md md:max-w-lg mb-6 font-normal leading-relaxed">
           Final-year B.Tech (IT) student building end-to-end analytics products — ML pipelines, Flask applications, and BI models deployed to the cloud. Built credit risk models over 51,000+ applicants at Bharat Electronics Limited (BEL).
         </p>
 
@@ -144,10 +144,10 @@ export const HeroSection: React.FC = () => {
           {/* Solid "View Projects" button */}
           <button
             onClick={scrollToWorks}
-            className="group relative inline-flex items-center justify-center p-[2px] rounded-full hover:scale-105 transition-all duration-300"
+            className="group relative inline-flex items-center justify-center p-[2px] rounded-full hover:scale-105 transition-all duration-300 cursor-pointer"
           >
             <span className="absolute inset-0 rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <span className="relative z-10 rounded-full text-sm font-medium px-7 py-3.5 bg-text-primary text-bg group-hover:bg-bg group-hover:text-text-primary transition-colors duration-300">
+            <span className="relative z-10 rounded-full text-xs md:text-sm font-medium px-6 md:px-7 py-3 md:py-3.5 bg-text-primary text-bg group-hover:bg-bg group-hover:text-text-primary transition-colors duration-300">
               Explore Projects
             </span>
           </button>
@@ -155,22 +155,22 @@ export const HeroSection: React.FC = () => {
           {/* Outlined "BEL Internship" button */}
           <button
             onClick={scrollToExperience}
-            className="group relative inline-flex items-center justify-center p-[2px] rounded-full hover:scale-105 transition-all duration-300"
+            className="group relative inline-flex items-center justify-center p-[2px] rounded-full hover:scale-105 transition-all duration-300 cursor-pointer"
           >
             <span className="absolute inset-0 rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <span className="relative z-10 rounded-full text-sm font-medium px-7 py-3.5 border border-stroke bg-bg text-text-primary group-hover:border-transparent transition-all duration-300">
+            <span className="relative z-10 rounded-full text-xs md:text-sm font-medium px-6 md:px-7 py-3 md:py-3.5 border border-stroke bg-bg text-text-primary group-hover:border-transparent transition-all duration-300">
               BEL Internship Brief
             </span>
           </button>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
+      {/* Scroll Indicator (Shifted cleanly to downside) */}
+      <div className="relative z-20 flex flex-col items-center gap-1.5 mt-auto pt-4 cursor-pointer" onClick={scrollToWorks}>
         <span className="text-[10px] text-muted uppercase tracking-[0.2em] font-medium">
           SCROLL
         </span>
-        <div className="relative w-px h-10 bg-stroke/60 overflow-hidden">
+        <div className="relative w-px h-8 bg-stroke/60 overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1/2 accent-gradient animate-scroll-down" />
         </div>
       </div>
