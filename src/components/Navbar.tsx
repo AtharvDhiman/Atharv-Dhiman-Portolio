@@ -63,6 +63,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {[
             { name: 'Home', id: 'hero' },
             { name: 'Projects', id: 'works' },
+            { name: 'Playground', id: 'playground' },
             { name: 'Experience', id: 'experience' },
             { name: 'Skills', id: 'skills' },
             { name: 'Contact', id: 'contact' },

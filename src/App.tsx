@@ -3,6 +3,7 @@ import { LoadingScreen } from './components/LoadingScreen';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { SelectedWorksSection } from './components/SelectedWorksSection';
+import { PlaygroundSection } from './components/PlaygroundSection';
 import { JournalSection } from './components/JournalSection';
 import { ExplorationsSection } from './components/ExplorationsSection';
 import { StatsSection } from './components/StatsSection';
@@ -35,6 +36,7 @@ export function App() {
       <main>
         <HeroSection />
         <SelectedWorksSection />
+        <PlaygroundSection />
         <JournalSection />
         <ExplorationsSection />
         <StatsSection />
