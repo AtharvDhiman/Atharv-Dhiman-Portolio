@@ -45,7 +45,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* 1. Logo Circle */}
         <button
           onClick={() => scrollToSection('hero')}
-          className="group relative flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full p-[1px] transition-transform duration-300 hover:scale-110 shrink-0 cursor-pointer"
+          className="group relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full p-[1px] transition-transform duration-300 hover:scale-110 shrink-0 cursor-pointer"
           title="Atharv Dhiman — Home"
         >
           {/* Accent gradient border (reverses on hover) */}

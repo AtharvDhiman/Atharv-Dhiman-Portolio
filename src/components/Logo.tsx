@@ -48,10 +48,11 @@ export const Logo: React.FC<LogoProps> = ({
           }
           .logo-monogram {
             font-family: 'Bodoni Moda', 'Instrument Serif', Georgia, serif;
-            font-size: 52px;
+            font-size: 82px;
             fill: var(--color-text-primary, #ffffff);
             text-anchor: middle;
-            font-weight: 300;
+            font-weight: 600;
+            letter-spacing: 1px;
           }
           .logo-orbit {
             fill: none;
@@ -107,7 +108,7 @@ export const Logo: React.FC<LogoProps> = ({
 
       {/* Central Monogram with Pulse */}
       <g className="logo-center-group">
-        <text className="logo-monogram" x="100" y="118">
+        <text className="logo-monogram" x="100" y="128">
           AD
         </text>
       </g>

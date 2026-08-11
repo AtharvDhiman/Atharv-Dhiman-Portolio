@@ -109,7 +109,7 @@ export const HeroSection: React.FC = () => {
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center my-auto pt-14 sm:pt-16 pb-6">
         {/* Animated Logo Badge */}
         <div className="blur-in mb-3 hover:scale-105 transition-transform duration-300">
-          <Logo size={48} className="sm:w-[56px] sm:h-[56px]" />
+          <Logo size={76} className="sm:w-[96px] sm:h-[96px]" />
         </div>
 
         {/* Eyebrow */}
