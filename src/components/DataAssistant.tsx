@@ -25,11 +25,11 @@ const Bars: React.FC<{ bars: NonNullable<AssistantAnswer['bars']> }> = ({
   return (
     <div className="mt-4 space-y-2.5">
       {bars.map((b, i) => (
-        <div key={b.label} className="flex items-center gap-3">
-          <div className="w-32 shrink-0 text-right text-xs text-muted">
+        <div key={b.label} className="flex items-center gap-2 sm:gap-3">
+          <div className="w-20 shrink-0 text-right text-[11px] text-muted sm:w-32 sm:text-xs">
             {b.label}
           </div>
-          <div className="h-5 flex-1 overflow-hidden rounded bg-stroke">
+          <div className="h-5 min-w-0 flex-1 overflow-hidden rounded bg-stroke">
             <div
               className="accent-gradient flex h-full items-center justify-end rounded pr-2 text-[10px] font-semibold text-bg"
               style={{

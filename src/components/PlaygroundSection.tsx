@@ -101,7 +101,7 @@ export const PlaygroundSection: React.FC = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="mt-8 rounded-3xl border border-stroke bg-surface/40 p-6 sm:p-9"
+          className="mt-8 rounded-3xl border border-stroke bg-surface/40 p-4 sm:p-6 md:p-9"
         >
           <div className="mb-7 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div className="max-w-2xl">

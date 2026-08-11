@@ -31,10 +31,10 @@ const Slider: React.FC<SliderProps> = ({
 }) => {
   const pct = ((value - min) / (max - min)) * 100;
   return (
-    <div>
-      <div className="flex items-baseline justify-between">
-        <label className="text-sm text-muted">{label}</label>
-        <span className="font-mono text-sm font-semibold text-text-primary">
+    <div className="min-w-0">
+      <div className="flex items-baseline justify-between gap-2">
+        <label className="min-w-0 text-sm text-muted">{label}</label>
+        <span className="shrink-0 font-mono text-sm font-semibold text-text-primary">
           {display}
         </span>
       </div>
@@ -62,8 +62,8 @@ const ApprovalGauge: React.FC<{ value: number; color: string }> = ({
   const c = 2 * Math.PI * r;
   const offset = c - (value / 100) * c;
   return (
-    <div className="relative h-32 w-32 shrink-0">
-      <svg viewBox="0 0 120 120" className="h-32 w-32 -rotate-90">
+    <div className="relative h-24 w-24 shrink-0 sm:h-32 sm:w-32">
+      <svg viewBox="0 0 120 120" className="h-24 w-24 -rotate-90 sm:h-32 sm:w-32">
         <circle
           cx="60"
           cy="60"
@@ -86,7 +86,7 @@ const ApprovalGauge: React.FC<{ value: number; color: string }> = ({
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="font-display italic text-3xl text-text-primary">
+        <span className="font-display text-2xl italic text-text-primary sm:text-3xl">
           {value.toFixed(0)}%
         </span>
         <span className="text-[10px] uppercase tracking-widest text-muted">
@@ -111,7 +111,7 @@ export const CreditRiskSimulator: React.FC = () => {
   return (
     <div className="grid gap-8 lg:grid-cols-2">
       {/* Controls */}
-      <div className="space-y-6">
+      <div className="min-w-0 space-y-6">
         <Slider
           label="Credit score"
           value={input.creditScore}
@@ -160,15 +160,15 @@ export const CreditRiskSimulator: React.FC = () => {
       </div>
 
       {/* Result */}
-      <div className="rounded-3xl border border-stroke bg-bg/40 p-6">
-        <div className="flex items-center justify-between gap-4">
-          <div>
+      <div className="min-w-0 rounded-3xl border border-stroke bg-bg/40 p-5 sm:p-6">
+        <div className="flex flex-col items-center gap-5 text-center sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:text-left">
+          <div className="min-w-0">
             <div className="text-xs uppercase tracking-widest text-muted">
               Risk tier
             </div>
-            <div className="mt-2 flex items-center gap-3">
+            <div className="mt-2 flex items-center justify-center gap-3 sm:justify-start">
               <span
-                className="flex h-11 w-11 items-center justify-center rounded-xl font-mono text-lg font-bold"
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl font-mono text-lg font-bold"
                 style={{
                   color: result.accent,
                   background: `${result.accent}1f`,
@@ -177,7 +177,7 @@ export const CreditRiskSimulator: React.FC = () => {
               >
                 {result.tier}
               </span>
-              <div>
+              <div className="min-w-0">
                 <div className="text-base font-semibold text-text-primary">
                   {result.tierLabel}
                 </div>
@@ -223,7 +223,7 @@ export const CreditRiskSimulator: React.FC = () => {
         </div>
 
         {/* Terms */}
-        <div className="mt-5 grid grid-cols-3 gap-3">
+        <div className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-3">
           {[
             { label: 'Interest rate', value: `${result.interestRate}%` },
             { label: 'New EMI', value: formatINR(result.newEmi) },
@@ -231,12 +231,14 @@ export const CreditRiskSimulator: React.FC = () => {
           ].map((t) => (
             <div
               key={t.label}
-              className="rounded-xl border border-stroke bg-surface p-3 text-center"
+              className="flex items-center justify-between gap-2 rounded-xl border border-stroke bg-surface px-3 py-2.5 sm:flex-col sm:justify-center sm:gap-1 sm:py-3 sm:text-center"
             >
-              <div className="font-mono text-sm font-semibold text-text-primary">
+              <div className="order-2 font-mono text-sm font-semibold text-text-primary sm:order-none">
                 {t.value}
               </div>
-              <div className="mt-1 text-[10px] text-muted">{t.label}</div>
+              <div className="order-1 text-[10px] text-muted sm:order-none">
+                {t.label}
+              </div>
             </div>
           ))}
         </div>
