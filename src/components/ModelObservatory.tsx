@@ -156,7 +156,7 @@ export const ModelObservatory: React.FC = () => {
           : { led: OK, word: 'training', color: OK };
 
   const underwriterStatus = !u
-    ? { led: WARN, word: 'booting…', color: WARN }
+    ? { led: WARN, word: 'standby', color: WARN }
     : u.p >= 0.5
       ? { led: OK, word: 'approved', color: OK }
       : { led: WARN, word: 'under review', color: WARN };
@@ -243,8 +243,9 @@ export const ModelObservatory: React.FC = () => {
               <Row k="decision threshold" v="p ≥ 50%" />
             </div>
             <p className="mt-4 text-[9px] leading-relaxed text-muted/70">
-              scores refresh while the underwriting section is on screen — scroll
-              there and back to move this needle.
+              standby means The Underwriting isn't open this session — mechanisms
+              run one at a time. its last published score appears here once you
+              open it from the menu.
             </p>
           </div>
 

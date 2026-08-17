@@ -62,6 +62,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center gap-0.5 sm:gap-1 shrink-0">
           {[
             { name: 'Home', id: 'hero' },
+            { name: 'Mechanisms', id: 'mechanisms' },
             { name: 'Projects', id: 'works' },
             { name: 'Playground', id: 'playground' },
             { name: 'Experience', id: 'experience' },
@@ -83,6 +84,12 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
             );
           })}
+          <a
+            href="/lab"
+            className="text-[11px] sm:text-xs md:text-sm rounded-full px-2 sm:px-3.5 py-1 sm:py-1.5 transition-all duration-200 font-medium whitespace-nowrap text-muted hover:text-text-primary hover:bg-stroke/50"
+          >
+            Lab
+          </a>
         </div>
 
         {/* 4. Divider */}

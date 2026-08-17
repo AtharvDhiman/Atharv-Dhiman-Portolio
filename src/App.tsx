@@ -2,11 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { LoadingScreen } from './components/LoadingScreen';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { SessionUnderwriting } from './components/SessionUnderwriting';
-import { ModelObservatory } from './components/ModelObservatory';
-import { SegmentationSection } from './components/SegmentationSection';
-import { ForecastSection } from './components/ForecastSection';
-import { FraudRadarSection } from './components/FraudRadarSection';
+import { MechanismsSection } from './components/MechanismsSection';
 import { SelectedWorksSection } from './components/SelectedWorksSection';
 import { PlaygroundSection } from './components/PlaygroundSection';
 import { JournalSection } from './components/JournalSection';
@@ -40,11 +36,7 @@ export function App() {
 
       <main>
         <HeroSection />
-        <SessionUnderwriting />
-        <ModelObservatory />
-        <SegmentationSection />
-        <ForecastSection />
-        <FraudRadarSection />
+        <MechanismsSection />
         <SelectedWorksSection />
         <PlaygroundSection />
         <JournalSection />
