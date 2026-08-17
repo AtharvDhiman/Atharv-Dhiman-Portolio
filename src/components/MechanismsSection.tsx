@@ -59,6 +59,11 @@ const CARDS: Card[] = [
     blurb: 'The Central Limit Theorem assembling itself from real random walks — with a live χ² verdict.',
     action: 'lab',
   },
+  {
+    id: '08', title: 'The Optimizer Races', discipline: 'Optimization',
+    blurb: 'Drop SGD, Momentum and Adam anywhere on a real loss landscape and watch them race downhill.',
+    action: 'lab',
+  },
 ];
 
 export const MechanismsSection: React.FC = () => {
@@ -90,7 +95,7 @@ export const MechanismsSection: React.FC = () => {
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-px bg-stroke" />
               <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
-                Seven Live Mechanisms — Choose One
+                Eight Live Mechanisms — Choose One
               </span>
               <div className="w-8 h-px bg-stroke" />
             </div>
