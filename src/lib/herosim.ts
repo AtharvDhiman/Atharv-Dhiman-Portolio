@@ -298,6 +298,20 @@ export class World {
     return correct / n;
   }
 
+  /** Mean distance of the cluster means from their OU anchors — how far the
+      world has genuinely wandered from its starting distribution. */
+  driftMagnitude(): number {
+    let sum = 0;
+    let count = 0;
+    for (const list of this.clusters) {
+      for (const c of list) {
+        sum += Math.hypot(c.x - c.ax, c.y - c.ay);
+        count++;
+      }
+    }
+    return count ? sum / count : 0;
+  }
+
   /** Press-and-hold: inject a burst cluster of applicants at the pointer. */
   inject(cls: 0 | 1, cx: number, cy: number, count: number, cap: number) {
     // clamp so bad pointer math can never seed NaN/off-world positions

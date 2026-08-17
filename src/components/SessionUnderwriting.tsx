@@ -8,6 +8,7 @@ import {
   UNDERWRITE_SEED,
 } from '../lib/underwrite';
 import type { Underwriter, Assessment } from '../lib/underwrite';
+import { telemetry } from '../lib/telemetry';
 
 // ---------------------------------------------------------------------------
 // SessionUnderwriting — "mechanism 02": the page underwrites YOUR visit, live.
@@ -66,7 +67,27 @@ export const SessionUnderwriting: React.FC = () => {
     const m = fitUnderwriter();
     if (disposed) return;
     setModel(m);
-    setResult(assess(m, kin));
+    let rescores = 1;
+    let lastApproved: boolean | null = null;
+    const score = () => {
+      const a = assess(m, kin);
+      setResult(a);
+      telemetry.publishUnderwriter({ p: a.p, rescores, fitMs: m.fitMs });
+      if (lastApproved !== null && a.approved !== lastApproved) {
+        telemetry.event(
+          a.approved
+            ? `underwriter: session APPROVED at p=${(a.p * 100).toFixed(1)}%`
+            : `underwriter: session back under review (p=${(a.p * 100).toFixed(1)}%)`,
+          a.approved ? 'info' : 'warn'
+        );
+      }
+      lastApproved = a.approved;
+      rescores++;
+    };
+    // ms deliberately omitted so StrictMode's dev double-mount dedups cleanly;
+    // the exact fit time lives in the metrics card
+    telemetry.event('underwriter: baseline refit in-browser (N=51,336, seeded)', 'info');
+    score();
     const onPointer = (e: PointerEvent) => kin.onPointer(e.clientX, e.clientY, e.timeStamp);
     const onScroll = () => kin.onScroll();
     window.addEventListener('pointermove', onPointer, { passive: true });
@@ -81,7 +102,7 @@ export const SessionUnderwriting: React.FC = () => {
 
     const interval = window.setInterval(() => {
       if (disposed || document.hidden || !inViewRef.current) return;
-      setResult(assess(m, kin)); // raw values, never eased
+      score(); // raw values, never eased
     }, 300);
 
     return () => {

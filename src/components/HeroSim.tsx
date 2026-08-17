@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { TinyMLP, World, Field } from '../lib/herosim';
+import { telemetry } from '../lib/telemetry';
 
 // ---------------------------------------------------------------------------
 // HeroSim — "The Boundary"
@@ -44,7 +45,14 @@ export const HeroSim: React.FC<HeroSimProps> = ({ headlineRef }) => {
   const [reduced, setReduced] = useState(false);
   frozenRef.current = frozen; // ref mirrors state; single writer below
 
-  const toggleFreeze = () => setFrozen((f) => !f);
+  const toggleFreeze = () => {
+    const next = !frozenRef.current;
+    telemetry.event(
+      next ? 'boundary: model frozen by visitor — drift unmitigated' : 'boundary: training resumed',
+      next ? 'warn' : 'info'
+    );
+    setFrozen(next);
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -160,7 +168,12 @@ export const HeroSim: React.FC<HeroSimProps> = ({ headlineRef }) => {
       let side: 0 | 1 = world.rng() < 0.5 ? 0 : 1;
       ptr.holdTimer = window.setTimeout(function burst() {
         if (!ptr.holding || disposed) return;
-        world.inject(side, ptr.x, ptr.y, mobile ? 8 : 14, mobile ? 420 : 1150);
+        const burstN = mobile ? 8 : 14;
+        world.inject(side, ptr.x, ptr.y, burstN, mobile ? 420 : 1150);
+        telemetry.event(
+          `boundary: visitor injected a ${side === 1 ? 'repaid' : 'defaulted'} cohort (n=${burstN})`,
+          'info'
+        );
         side = side === 0 ? 1 : 0;
         ptr.injectTimer = window.setTimeout(burst, 260);
       }, 200);
@@ -277,6 +290,8 @@ export const HeroSim: React.FC<HeroSimProps> = ({ headlineRef }) => {
     // ---- main loop --------------------------------------------------------
     let frame = 0;
     let lastHudAt = 0;
+    let lastTickAt = 0;
+    let emaFps = 0;
 
     // Self-canceling scheduler: cancelling any pending pair before scheduling
     // guarantees a single tick chain even across rapid hide/show cycles.
@@ -334,9 +349,23 @@ export const HeroSim: React.FC<HeroSimProps> = ({ headlineRef }) => {
       if (frame % 6 === 0 && !isFrozen) drawSpark();
 
       const now = performance.now();
+      if (lastTickAt > 0) {
+        const dt = now - lastTickAt;
+        if (dt > 0 && dt < 1000) emaFps = emaFps * 0.9 + (1000 / dt) * 0.1;
+      }
+      lastTickAt = now;
       if (now - lastHudAt > 250) {
         lastHudAt = now;
         setHud();
+        telemetry.publishBoundary({
+          epoch,
+          loss: lastLoss,
+          acc: holdoutAcc,
+          frozen: isFrozen,
+          n: world.particles.length,
+          fps: emaFps,
+          drift: world.driftMagnitude(),
+        });
       }
       frame++;
       scheduleNext();
@@ -381,6 +410,7 @@ export const HeroSim: React.FC<HeroSimProps> = ({ headlineRef }) => {
       paintStatic();
       startTimer = window.setTimeout(() => {
         loopStarted = true;
+        telemetry.event('boundary: SGD training started', 'info');
         scheduleNext();
       }, START_DELAY_MS);
     }
