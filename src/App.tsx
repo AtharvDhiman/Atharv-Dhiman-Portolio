@@ -4,6 +4,7 @@ import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { SessionUnderwriting } from './components/SessionUnderwriting';
 import { ModelObservatory } from './components/ModelObservatory';
+import { SegmentationSection } from './components/SegmentationSection';
 import { SelectedWorksSection } from './components/SelectedWorksSection';
 import { PlaygroundSection } from './components/PlaygroundSection';
 import { JournalSection } from './components/JournalSection';
@@ -39,6 +40,7 @@ export function App() {
         <HeroSection />
         <SessionUnderwriting />
         <ModelObservatory />
+        <SegmentationSection />
         <SelectedWorksSection />
         <PlaygroundSection />
         <JournalSection />
