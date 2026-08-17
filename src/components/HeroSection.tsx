@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Hls from 'hls.js';
 import gsap from 'gsap';
 import { Logo } from './Logo';
+import { HeroSim } from './HeroSim';
 
-const HLS_VIDEO_URL = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8';
 const ROLES = [
   'Data Analyst',
   'Machine Learning Practitioner',
@@ -11,34 +10,9 @@ const ROLES = [
 ];
 
 export const HeroSection: React.FC = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const heroRef = useRef<HTMLElement>(null);
+  const headlineRef = useRef<HTMLHeadingElement>(null);
   const [roleIndex, setRoleIndex] = useState<number>(0);
-
-  // Initialize HLS video stream
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (Hls.isSupported()) {
-      const hls = new Hls({
-        enableWorker: true,
-        lowLatencyMode: true,
-      });
-      hls.loadSource(HLS_VIDEO_URL);
-      hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        video.play().catch(() => {});
-      });
-
-      return () => {
-        hls.destroy();
-      };
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = HLS_VIDEO_URL;
-      video.play().catch(() => {});
-    }
-  }, []);
 
   // Cycling roles every 2.2 seconds
   useEffect(() => {
@@ -88,36 +62,46 @@ export const HeroSection: React.FC = () => {
       ref={heroRef}
       className="relative w-full min-h-screen py-12 sm:py-16 flex flex-col items-center justify-between overflow-hidden select-none"
     >
-      {/* Background HLS Video */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover -translate-x-1/2 -translate-y-1/2 opacity-70"
-        />
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/40" />
-        {/* Bottom gradient fade to bg */}
-        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-bg to-transparent" />
-      </div>
+      {/* Chart-paper grid under the sim */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.3]"
+        style={{
+          backgroundImage:
+            'linear-gradient(to right, var(--stroke) 1px, transparent 1px), linear-gradient(to bottom, var(--stroke) 1px, transparent 1px)',
+          backgroundSize: '56px 56px',
+          maskImage: 'radial-gradient(ellipse 90% 70% at 50% 40%, black 30%, transparent 75%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 90% 70% at 50% 40%, black 30%, transparent 75%)',
+        }}
+      />
 
-      {/* Hero Content (Centered, z-10) */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center my-auto pt-14 sm:pt-16 pb-6">
+      {/* A real credit-risk classifier training live — canvas + HUD */}
+      <HeroSim headlineRef={headlineRef} />
+
+      {/* Bottom gradient fade to bg */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-48 bg-gradient-to-t from-bg to-transparent"
+      />
+
+      {/* Hero Content (Centered, z-10). pointer-events-none lets presses on
+          empty space reach the sim; interactive children re-enable events. */}
+      <div className="pointer-events-none relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center my-auto pt-14 sm:pt-16 pb-6">
         {/* Animated Logo Badge */}
-        <div className="blur-in mb-3 hover:scale-105 transition-transform duration-300">
+        <div className="pointer-events-auto blur-in mb-3 hover:scale-105 transition-transform duration-300">
           <Logo size={76} className="sm:w-[96px] sm:h-[96px]" />
         </div>
 
         {/* Eyebrow */}
-        <span className="blur-in inline-block text-[10px] sm:text-xs text-muted uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-3 sm:mb-4 font-medium px-2">
+        <span className="blur-in inline-block text-[10px] sm:text-xs text-muted uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-2 sm:mb-3 font-medium px-2">
           DATA ANALYST &amp; MACHINE LEARNING // ABES IT '27
         </span>
 
         {/* Name */}
-        <h1 className="name-reveal text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display italic leading-[0.95] tracking-tight text-text-primary mb-3 sm:mb-4">
+        <h1
+          ref={headlineRef}
+          className="name-reveal text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display italic leading-[0.95] tracking-tight text-text-primary mb-3 sm:mb-4"
+        >
           Atharv Dhiman
         </h1>
 
@@ -139,7 +123,7 @@ export const HeroSection: React.FC = () => {
         </p>
 
         {/* CTA Buttons */}
-        <div className="blur-in flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto max-w-xs sm:max-w-none">
+        <div className="pointer-events-auto blur-in flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto max-w-xs sm:max-w-none">
           {/* Solid "View Projects" button */}
           <button
             onClick={scrollToWorks}
