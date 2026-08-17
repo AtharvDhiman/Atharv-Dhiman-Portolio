@@ -5,6 +5,7 @@ import { HeroSection } from './components/HeroSection';
 import { SessionUnderwriting } from './components/SessionUnderwriting';
 import { ModelObservatory } from './components/ModelObservatory';
 import { SegmentationSection } from './components/SegmentationSection';
+import { ForecastSection } from './components/ForecastSection';
 import { SelectedWorksSection } from './components/SelectedWorksSection';
 import { PlaygroundSection } from './components/PlaygroundSection';
 import { JournalSection } from './components/JournalSection';
@@ -41,6 +42,7 @@ export function App() {
         <SessionUnderwriting />
         <ModelObservatory />
         <SegmentationSection />
+        <ForecastSection />
         <SelectedWorksSection />
         <PlaygroundSection />
         <JournalSection />
