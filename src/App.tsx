@@ -6,6 +6,7 @@ import { SessionUnderwriting } from './components/SessionUnderwriting';
 import { ModelObservatory } from './components/ModelObservatory';
 import { SegmentationSection } from './components/SegmentationSection';
 import { ForecastSection } from './components/ForecastSection';
+import { FraudRadarSection } from './components/FraudRadarSection';
 import { SelectedWorksSection } from './components/SelectedWorksSection';
 import { PlaygroundSection } from './components/PlaygroundSection';
 import { JournalSection } from './components/JournalSection';
@@ -43,6 +44,7 @@ export function App() {
         <ModelObservatory />
         <SegmentationSection />
         <ForecastSection />
+        <FraudRadarSection />
         <SelectedWorksSection />
         <PlaygroundSection />
         <JournalSection />
