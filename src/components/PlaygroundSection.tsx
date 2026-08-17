@@ -26,7 +26,7 @@ const TABS: Tab[] = [
     id: 'retainai',
     label: 'Ask the Data',
     short: 'RetainAI',
-    tag: 'Generative AI',
+    tag: 'HR Analytics Q&A',
     blurb:
       'Query the workforce-attrition dataset in plain English and get instant, data-backed answers — the same natural-language interface RetainAI puts in front of non-technical HR stakeholders.',
     demo: 'https://employee-attrition-system.vercel.app/',
@@ -64,7 +64,7 @@ export const PlaygroundSection: React.FC = () => {
 
           <p className="text-sm text-muted max-w-md mx-auto mt-4 font-normal">
             Don't just read about the models — play with them. Two in-browser demos
-            of the Machine Learning and Generative AI behind my projects.
+            of the machine learning and analytics behind my projects.
           </p>
         </motion.div>
 

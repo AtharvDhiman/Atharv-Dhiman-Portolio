@@ -6,8 +6,7 @@ import { Logo } from './Logo';
 const HLS_VIDEO_URL = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8';
 const ROLES = [
   'Data Analyst',
-  'Generative AI Specialist',
-  'Machine Learning Engineer',
+  'Machine Learning Practitioner',
   'IT Scholar @ ABES',
 ];
 
@@ -114,7 +113,7 @@ export const HeroSection: React.FC = () => {
 
         {/* Eyebrow */}
         <span className="blur-in inline-block text-[10px] sm:text-xs text-muted uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-3 sm:mb-4 font-medium px-2">
-          DATA ANALYST &amp; GENERATIVE AI // ABES IT '27
+          DATA ANALYST &amp; MACHINE LEARNING // ABES IT '27
         </span>
 
         {/* Name */}

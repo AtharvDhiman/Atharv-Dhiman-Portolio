@@ -32,14 +32,14 @@ const PROJECTS: Project[] = [
   {
     id: 'retainai',
     title: 'RetainAI — Employee Flight Risk Platform',
-    category: 'Predictive HR Analytics & GenAI',
+    category: 'Predictive HR Analytics & ML',
     year: '2026',
     colSpan: 'md:col-span-6',
     aspectRatio: 'aspect-[16/10]',
     imageUrl: '/projects/retainai.jpg',
     demoUrl: 'https://employee-attrition-system.vercel.app/',
-    description: 'Cloud-deployed predictive analytics web application forecasting employee flight risk at 91.6% accuracy. Features an integrated HR AI Chatbot answering natural-language query questions over structured workforce datasets.',
-    highlights: ['91.6% Flight Risk Accuracy', 'Natural-Language Query Chatbot', 'Batch CSV Processor'],
+    description: 'Cloud-deployed predictive analytics web application forecasting employee attrition risk at 91.6% accuracy. Model comparison across Logistic Regression, Random Forest and Gradient Boosting surfaces the key attrition drivers — overtime, commute distance and compensation.',
+    highlights: ['91.6% Attrition Accuracy', 'Key Driver Analysis', 'Batch CSV Processor'],
     skills: ['Python', 'Flask', 'Scikit-Learn', 'Chart.js', 'PostgreSQL'],
   },
 ];
@@ -75,7 +75,7 @@ export const SelectedWorksSection: React.FC = () => {
 
           <div className="flex flex-col md:items-end gap-3">
             <p className="text-sm text-muted max-w-sm font-normal">
-              Cloud-deployed machine learning models and Generative AI applications for credit risk assessment and workforce analytics.
+              Cloud-deployed machine learning models and analytics applications for credit risk assessment and workforce analytics.
             </p>
           </div>
         </motion.div>

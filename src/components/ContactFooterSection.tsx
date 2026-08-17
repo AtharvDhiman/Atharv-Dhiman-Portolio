@@ -4,7 +4,7 @@ import gsap from 'gsap';
 import { Logo } from './Logo';
 
 const HLS_VIDEO_URL = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8';
-const MARQUEE_TEXT = 'ATHARV DHIMAN • DATA ANALYST • GENERATIVE AI • ML ENGINEER • ';
+const MARQUEE_TEXT = 'ATHARV DHIMAN • DATA ANALYST • MACHINE LEARNING • ';
 
 interface ContactFooterSectionProps {
   theme: string;
@@ -97,7 +97,7 @@ export const ContactFooterSection: React.FC<ContactFooterSectionProps> = ({
         </h2>
 
         <p className="text-xs sm:text-sm text-muted max-w-xs sm:max-w-md mb-6 sm:mb-8 font-normal">
-          Available for Data Analyst, Machine Learning Engineer, and Generative AI roles. Based in Ghaziabad, UP.
+          Available for Data Analyst and Machine Learning roles. Based in Ghaziabad, UP.
         </p>
 
         {/* Email CTA Button with gradient hover ring */}
@@ -171,7 +171,7 @@ export const ContactFooterSection: React.FC<ContactFooterSectionProps> = ({
           <div className="flex items-center gap-2 bg-surface/80 px-3.5 py-1.5 rounded-full border border-stroke">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
             <span className="text-[11px] text-text-primary font-medium">
-              Open for Data Analyst, GenAI &amp; ML Roles
+              Open for Data Analyst &amp; ML Roles
             </span>
           </div>
         </div>

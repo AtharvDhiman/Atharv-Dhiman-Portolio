@@ -17,12 +17,12 @@ interface SkillItem {
 const SKILLS_PLAYGROUND: SkillItem[] = [
   {
     id: 'skill-1',
-    title: 'Generative AI & LLM Query Interfaces',
-    category: 'Generative AI',
+    title: 'Python & SQL for Analytics',
+    category: 'Languages',
     imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
     rotation: '-rotate-3',
-    description: 'Building natural-language query interfaces over structured datasets using LLM APIs, prompt engineering, and conversational AI assistants.',
-    tags: ['LLM APIs', 'Prompt Engineering', 'NL-to-SQL', 'LangChain'],
+    description: 'Writing analysis-ready Python and SQL — from data pulls and joins to scripted pipelines powering scoring applications.',
+    tags: ['Python', 'SQL'],
   },
   {
     id: 'skill-2',
@@ -30,26 +30,26 @@ const SKILLS_PLAYGROUND: SkillItem[] = [
     category: 'Machine Learning',
     imageUrl: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80',
     rotation: 'rotate-2',
-    description: 'Cross-validated model pipelines comparing Logistic Regression, Random Forest, and Gradient Boosting with SMOTE class balancing.',
-    tags: ['scikit-learn', 'Gradient Boosting', 'SMOTE', 'Feature Importance'],
+    description: 'Cross-validated classification pipelines comparing Logistic Regression, Random Forest and Gradient Boosting, with model evaluation and feature-importance analysis for predictive modelling.',
+    tags: ['scikit-learn', 'Gradient Boosting', 'Cross-Validation', 'Feature Importance'],
   },
   {
     id: 'skill-3',
-    title: 'PostgreSQL & Star-Schema Data Warehousing',
-    category: 'Languages & Databases',
+    title: 'Relational Databases & Data Modelling',
+    category: 'Databases',
     imageUrl: 'https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&w=800&q=80',
     rotation: '-rotate-2',
-    description: 'Designing relational SQL schemas, optimizing indexing, Power Query transformations, and exporting star-schemas for BI platforms.',
-    tags: ['PostgreSQL', 'SQLite', 'DAX Modeling', 'Power Query'],
+    description: 'Designing relational schemas and data models in PostgreSQL and MySQL that feed analytics pipelines and BI exports.',
+    tags: ['PostgreSQL', 'MySQL', 'Relational Data Modelling'],
   },
   {
     id: 'skill-4',
     title: 'Exploratory Data Analysis & Feature Engineering',
-    category: 'Data & Analytics',
+    category: 'Data Analysis',
     imageUrl: 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=800&q=80',
     rotation: 'rotate-3',
-    description: 'Statistical correlation testing (Chi-Square, correlation matrices), FOIR ratio calculations, and debt-to-income indexation.',
-    tags: ['pandas', 'NumPy', 'SciPy', 'Statistical Testing'],
+    description: 'Data cleaning, wrangling and EDA with statistical testing (Chi-Square, correlation analysis), plus Excel Power Query and pivot-table reporting.',
+    tags: ['pandas', 'NumPy', 'SciPy', 'Excel (Power Query)'],
   },
   {
     id: 'skill-5',
@@ -57,17 +57,17 @@ const SKILLS_PLAYGROUND: SkillItem[] = [
     category: 'BI & Visualisation',
     imageUrl: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80',
     rotation: '-rotate-1',
-    description: 'Interactive dashboard reports, demographic cohort breakdown, Chart.js analytics charts, Seaborn correlation heatmaps.',
-    tags: ['Power BI', 'Chart.js', 'Seaborn', 'Matplotlib'],
+    description: 'Dashboard development and KPI reporting with Power BI, DAX and star-schema modelling, alongside Matplotlib, Seaborn and Chart.js visuals.',
+    tags: ['Power BI', 'DAX', 'Seaborn', 'Chart.js'],
   },
   {
     id: 'skill-6',
-    title: 'Flask Web Apps & Serverless Deployments',
-    category: 'Web & Deployment',
+    title: 'Flask Apps, Git & Cloud Deployment',
+    category: 'Tools & Deployment',
     imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
     rotation: 'rotate-2',
-    description: 'Shipping real-time prediction microservices with Flask APIs deployed on Vercel and Render with automated CI/CD pipelines.',
-    tags: ['Flask', 'JavaScript', 'Tailwind CSS', 'Vercel', 'Render'],
+    description: 'Shipping Flask analytics apps from Jupyter notebooks to production on Vercel and Render, versioned with Git and GitHub.',
+    tags: ['Flask', 'Git & GitHub', 'Jupyter', 'Vercel', 'Render'],
   },
 ];
 
@@ -159,7 +159,7 @@ export const ExplorationsSection: React.FC = () => {
           </h2>
 
           <p className="text-sm text-muted max-w-sm mx-auto mb-8 font-normal">
-            Languages, ML algorithms, Generative AI interfaces, and BI tools.
+            Languages, data analysis, ML modelling, and BI reporting tools.
           </p>
 
           <a
