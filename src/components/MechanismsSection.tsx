@@ -7,6 +7,7 @@ import { ForecastSection } from './ForecastSection';
 import { FraudRadarSection } from './FraudRadarSection';
 import { GaltonSection } from './GaltonSection';
 import { OptimizerRacesSection } from './OptimizerRacesSection';
+import { BeatMyModelSection } from './BeatMyModelSection';
 
 // ---------------------------------------------------------------------------
 // MechanismsSection — the chooser. Seven live mechanisms, one open at a
@@ -15,7 +16,7 @@ import { OptimizerRacesSection } from './OptimizerRacesSection';
 // on /lab. Each mechanism cleans up fully on close (verified effects).
 // ---------------------------------------------------------------------------
 
-type MechId = '02' | '03' | '04' | '05' | '06' | '07' | '08';
+type MechId = '02' | '03' | '04' | '05' | '06' | '07' | '08' | '09';
 
 interface Card {
   id: string;
@@ -66,6 +67,11 @@ const CARDS: Card[] = [
     blurb: 'Drop SGD, Momentum and Adam anywhere on a real loss landscape and watch them race downhill.',
     action: 'mount',
   },
+  {
+    id: '09', title: 'Beat My Model', discipline: 'Model evaluation',
+    blurb: 'Out-classify my deliberately mis-specified model — real confusion matrices, you vs machine.',
+    action: 'mount',
+  },
 ];
 
 export const MechanismsSection: React.FC = () => {
@@ -97,7 +103,7 @@ export const MechanismsSection: React.FC = () => {
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-px bg-stroke" />
               <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
-                Eight Live Mechanisms — Choose One
+                Nine Live Mechanisms — Choose One
               </span>
               <div className="w-8 h-px bg-stroke" />
             </div>
@@ -163,6 +169,7 @@ export const MechanismsSection: React.FC = () => {
       {active === '06' && <FraudRadarSection />}
       {active === '07' && <GaltonSection />}
       {active === '08' && <OptimizerRacesSection />}
+      {active === '09' && <BeatMyModelSection />}
     </>
   );
 };
