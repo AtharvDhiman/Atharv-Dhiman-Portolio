@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Logo } from './components/Logo';
 import { GaltonSection } from './components/GaltonSection';
-import { OptimizerRacesSection } from './components/OptimizerRacesSection';
 
 // ---------------------------------------------------------------------------
 // LabApp — /lab: live statistical experiments that don't fit the landing
@@ -74,12 +73,11 @@ export function LabApp() {
             href="/"
             className="mt-5 inline-block font-mono text-[11px] text-muted hover:text-text-primary transition-colors"
           >
-            mechanisms 01–06 live on the main page ↗
+            the full collection lives on the main page ↗
           </a>
         </div>
 
         <GaltonSection />
-        <OptimizerRacesSection />
       </main>
 
       <footer className="border-t border-stroke/40 py-8 text-center">

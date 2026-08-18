@@ -4,10 +4,7 @@ import { SessionUnderwriting } from './SessionUnderwriting';
 import { ModelObservatory } from './ModelObservatory';
 import { SegmentationSection } from './SegmentationSection';
 import { ForecastSection } from './ForecastSection';
-import { FraudRadarSection } from './FraudRadarSection';
 import { GaltonSection } from './GaltonSection';
-import { OptimizerRacesSection } from './OptimizerRacesSection';
-import { BeatMyModelSection } from './BeatMyModelSection';
 
 // ---------------------------------------------------------------------------
 // MechanismsSection — the chooser. Seven live mechanisms, one open at a
@@ -16,7 +13,7 @@ import { BeatMyModelSection } from './BeatMyModelSection';
 // on /lab. Each mechanism cleans up fully on close (verified effects).
 // ---------------------------------------------------------------------------
 
-type MechId = '02' | '03' | '04' | '05' | '06' | '07' | '08' | '09';
+type MechId = '02' | '03' | '04' | '05' | '06';
 
 interface Card {
   id: string;
@@ -53,23 +50,8 @@ const CARDS: Card[] = [
     action: 'mount',
   },
   {
-    id: '06', title: 'The Fraud Radar', discipline: 'Anomaly detection',
-    blurb: 'Mahalanobis scoring of your movement against your own baseline, flagged past a real χ² threshold.',
-    action: 'mount',
-  },
-  {
-    id: '07', title: 'The Galton Machine', discipline: 'Statistical foundations',
+    id: '06', title: 'The Galton Machine', discipline: 'Statistical foundations',
     blurb: 'The Central Limit Theorem assembling itself from real random walks — with a live χ² verdict.',
-    action: 'mount',
-  },
-  {
-    id: '08', title: 'The Optimizer Races', discipline: 'Optimization',
-    blurb: 'Drop SGD, Momentum and Adam anywhere on a real loss landscape and watch them race downhill.',
-    action: 'mount',
-  },
-  {
-    id: '09', title: 'Beat My Model', discipline: 'Model evaluation',
-    blurb: 'Out-classify my deliberately mis-specified model — real confusion matrices, you vs machine.',
     action: 'mount',
   },
 ];
@@ -103,7 +85,7 @@ export const MechanismsSection: React.FC = () => {
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-px bg-stroke" />
               <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
-                Nine Live Mechanisms — Choose One
+                Six Live Mechanisms — Choose One
               </span>
               <div className="w-8 h-px bg-stroke" />
             </div>
@@ -166,10 +148,7 @@ export const MechanismsSection: React.FC = () => {
       {active === '03' && <ModelObservatory />}
       {active === '04' && <SegmentationSection />}
       {active === '05' && <ForecastSection />}
-      {active === '06' && <FraudRadarSection />}
-      {active === '07' && <GaltonSection />}
-      {active === '08' && <OptimizerRacesSection />}
-      {active === '09' && <BeatMyModelSection />}
+      {active === '06' && <GaltonSection />}
     </>
   );
 };
