@@ -5,6 +5,8 @@ import { ModelObservatory } from './ModelObservatory';
 import { SegmentationSection } from './SegmentationSection';
 import { ForecastSection } from './ForecastSection';
 import { FraudRadarSection } from './FraudRadarSection';
+import { GaltonSection } from './GaltonSection';
+import { OptimizerRacesSection } from './OptimizerRacesSection';
 
 // ---------------------------------------------------------------------------
 // MechanismsSection — the chooser. Seven live mechanisms, one open at a
@@ -13,7 +15,7 @@ import { FraudRadarSection } from './FraudRadarSection';
 // on /lab. Each mechanism cleans up fully on close (verified effects).
 // ---------------------------------------------------------------------------
 
-type MechId = '02' | '03' | '04' | '05' | '06';
+type MechId = '02' | '03' | '04' | '05' | '06' | '07' | '08';
 
 interface Card {
   id: string;
@@ -57,12 +59,12 @@ const CARDS: Card[] = [
   {
     id: '07', title: 'The Galton Machine', discipline: 'Statistical foundations',
     blurb: 'The Central Limit Theorem assembling itself from real random walks — with a live χ² verdict.',
-    action: 'lab',
+    action: 'mount',
   },
   {
     id: '08', title: 'The Optimizer Races', discipline: 'Optimization',
     blurb: 'Drop SGD, Momentum and Adam anywhere on a real loss landscape and watch them race downhill.',
-    action: 'lab',
+    action: 'mount',
   },
 ];
 
@@ -159,6 +161,8 @@ export const MechanismsSection: React.FC = () => {
       {active === '04' && <SegmentationSection />}
       {active === '05' && <ForecastSection />}
       {active === '06' && <FraudRadarSection />}
+      {active === '07' && <GaltonSection />}
+      {active === '08' && <OptimizerRacesSection />}
     </>
   );
 };
