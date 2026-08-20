@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { loadMonogram, subscribeLogo } from '../lib/monogram3d';
 
 interface LogoProps {
   className?: string;
@@ -6,112 +7,91 @@ interface LogoProps {
   animated?: boolean;
 }
 
-export const Logo: React.FC<LogoProps> = ({
-  className = '',
-  size = 40,
-  animated = true,
-}) => {
+// ---------------------------------------------------------------------------
+// Logo — the real 3D "AD" monogram (assets/ad-monogram.obj), rendered by a
+// hand-written software 3D pipeline shared across every instance on the
+// page (see src/lib/monogram3d.ts). While the 72KB mesh loads, the classic
+// SVG mark shows so the logo never flashes empty. Reduced-motion visitors
+// get a static hero pose instead of the slow turn.
+// ---------------------------------------------------------------------------
+
+/** the previous hand-drawn mark, kept as the instant-loading fallback */
+const ClassicMark: React.FC = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 200 200"
+    width="100%"
+    height="100%"
+    aria-hidden
+  >
+    <style>{`
+      .logo-monogram-f {
+        font-family: 'Bodoni Moda', 'Instrument Serif', Georgia, serif;
+        font-size: 82px;
+        fill: var(--color-text-primary, #ffffff);
+        text-anchor: middle;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+      .logo-orbit-f { fill: none; stroke: var(--color-stroke, rgba(255,255,255,0.15)); stroke-width: 0.75; }
+      .logo-node-f { fill: var(--color-text-primary, #ffffff); }
+    `}</style>
+    <circle className="logo-orbit-f" cx="100" cy="100" r="85" />
+    <circle className="logo-node-f" cx="185" cy="100" r="2.5" />
+    <circle className="logo-node-f" cx="15" cy="100" r="2.5" />
+    <circle className="logo-node-f" cx="100" cy="15" r="2.5" />
+    <circle className="logo-node-f" cx="100" cy="185" r="2.5" />
+    <text className="logo-monogram-f" x="100" y="128">AD</text>
+  </svg>
+);
+
+export const Logo: React.FC<LogoProps> = ({ className = '', size = 40, animated = true }) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    let disposed = false;
+    loadMonogram().then((m) => {
+      if (!disposed && m) setReady(true);
+    });
+    return () => {
+      disposed = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!ready || !canvas) return;
+    let disposed = false;
+    let unsub: (() => void) | undefined;
+    subscribeLogo(canvas, animated).then((u) => {
+      if (disposed) u();
+      else unsub = u;
+    });
+    return () => {
+      disposed = true;
+      unsub?.();
+    };
+  }, [ready, animated]);
+
+  const dim = typeof size === 'number' ? `${size}px` : size;
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 200 200"
-      width={size}
-      height={size}
-      className={`select-none ${className}`}
-      aria-label="Atharv Dhiman Logo"
+    <span
+      className={`inline-block select-none ${className}`}
+      style={{ width: dim, height: dim }}
+      role="img"
+      aria-label="Atharv Dhiman — 3D AD monogram"
     >
-      <defs>
-        <radialGradient id="logo-bg-grad">
-          <stop offset="0%" stopColor="var(--color-text-primary, #ffffff)" stopOpacity="0.8" />
-          <stop offset="100%" stopColor="transparent" />
-        </radialGradient>
-        <style>{`
-          @keyframes logoPulseCore {
-            0%, 100% { transform: scale(1); opacity: 0.8; filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); }
-            50% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 15px rgba(255,255,255,0.9)); }
-          }
-          @keyframes logoRotateOuter {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-          }
-          @keyframes logoRotateInner {
-            from { transform: rotate(360deg); }
-            to { transform: rotate(0deg); }
-          }
-          @keyframes logoDashFlow {
-            0% { stroke-dashoffset: 40; }
-            100% { stroke-dashoffset: 0; }
-          }
-          @keyframes logoNodeBlink {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 1; }
-          }
-          .logo-monogram {
-            font-family: 'Bodoni Moda', 'Instrument Serif', Georgia, serif;
-            font-size: 82px;
-            fill: var(--color-text-primary, #ffffff);
-            text-anchor: middle;
-            font-weight: 600;
-            letter-spacing: 1px;
-          }
-          .logo-orbit {
-            fill: none;
-            stroke: var(--color-stroke, rgba(255,255,255,0.15));
-            stroke-width: 0.75;
-          }
-          .logo-connection {
-            fill: none;
-            stroke: var(--color-muted, rgba(255,255,255,0.4));
-            stroke-width: 1;
-            stroke-dasharray: 4 4;
-            ${animated ? 'animation: logoDashFlow 3s linear infinite;' : ''}
-          }
-          .logo-node {
-            fill: var(--color-text-primary, #ffffff);
-          }
-          .logo-center-group {
-            transform-origin: 100px 100px;
-            ${animated ? 'animation: logoPulseCore 4s ease-in-out infinite;' : ''}
-          }
-          .logo-outer-ring {
-            transform-origin: 100px 100px;
-            ${animated ? 'animation: logoRotateOuter 20s linear infinite;' : ''}
-          }
-          .logo-inner-ring {
-            transform-origin: 100px 100px;
-            ${animated ? 'animation: logoRotateInner 15s linear infinite;' : ''}
-          }
-        `}</style>
-      </defs>
-
-      {/* Background Glow */}
-      <circle cx="100" cy="100" r="70" fill="url(#logo-bg-grad)" opacity="0.12" />
-
-      {/* Outer Neural Ring */}
-      <g className="logo-outer-ring">
-        <circle className="logo-orbit" cx="100" cy="100" r="85" />
-        <circle className="logo-node" cx="185" cy="100" r="2.5" />
-        <circle className="logo-node" cx="15" cy="100" r="2.5" />
-        <circle className="logo-node" cx="100" cy="15" r="2.5" />
-        <circle className="logo-node" cx="100" cy="185" r="2.5" />
-      </g>
-
-      {/* Inner Connection Grid */}
-      <g className="logo-inner-ring">
-        <path className="logo-connection" d="M60,60 L140,60 L140,140 L60,140 Z" />
-        <path className="logo-connection" d="M100,40 L160,100 L100,160 L40,100 Z" />
-        <circle className="logo-node" cx="60" cy="60" r="3" style={animated ? { animation: 'logoNodeBlink 2s infinite' } : {}} />
-        <circle className="logo-node" cx="140" cy="60" r="3" style={animated ? { animation: 'logoNodeBlink 2s infinite 0.5s' } : {}} />
-        <circle className="logo-node" cx="140" cy="140" r="3" style={animated ? { animation: 'logoNodeBlink 2s infinite 1s' } : {}} />
-        <circle className="logo-node" cx="60" cy="140" r="3" style={animated ? { animation: 'logoNodeBlink 2s infinite 1.5s' } : {}} />
-      </g>
-
-      {/* Central Monogram with Pulse */}
-      <g className="logo-center-group">
-        <text className="logo-monogram" x="100" y="128">
-          AD
-        </text>
-      </g>
-    </svg>
+      {ready ? (
+        <canvas
+          ref={canvasRef}
+          width={192}
+          height={192}
+          style={{ width: '100%', height: '100%', display: 'block' }}
+        />
+      ) : (
+        <ClassicMark />
+      )}
+    </span>
   );
 };

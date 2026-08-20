@@ -88,8 +88,8 @@ export const HeroSection: React.FC = () => {
           empty space reach the sim; interactive children re-enable events. */}
       <div className="pointer-events-none relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center my-auto pt-14 sm:pt-16 pb-6">
         {/* Animated Logo Badge */}
-        <div className="pointer-events-auto blur-in mb-3 hover:scale-105 transition-transform duration-300">
-          <Logo size={76} className="sm:w-[96px] sm:h-[96px]" />
+        <div className="pointer-events-auto blur-in mb-3 hover:scale-105 transition-transform duration-300 w-[76px] h-[76px] sm:w-[96px] sm:h-[96px]">
+          <Logo size="100%" />
         </div>
 
         {/* Eyebrow */}

@@ -1,0 +1,13 @@
+# Exported by three-d-stage
+newmtl white
+Kd 0.9301 0.9301 0.9301
+Ks 0.2000 0.2000 0.2000
+Ns 136
+d 1.0000
+
+newmtl grey
+Kd 0.2705 0.2789 0.3005
+Ks 0.2000 0.2000 0.2000
+Ns 80
+d 1.0000
+
