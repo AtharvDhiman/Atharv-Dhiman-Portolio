@@ -9,8 +9,8 @@ import { GaltonSection } from './GaltonSection';
 // ---------------------------------------------------------------------------
 // MechanismsSection — the chooser. Seven live mechanisms, one open at a
 // time: visitors pick which demo to run, so the page only pays for the
-// mechanism actually in use. 01 is always live behind the hero; 07 lives
-// on /lab. Each mechanism cleans up fully on close (verified effects).
+// mechanism actually in use. 01 is always live in the launch frame under
+// the hero. Each mechanism cleans up fully on close (verified effects).
 // ---------------------------------------------------------------------------
 
 type MechId = '02' | '03' | '04' | '05' | '06';
@@ -26,7 +26,7 @@ interface Card {
 const CARDS: Card[] = [
   {
     id: '01', title: 'The Boundary', discipline: 'Supervised learning',
-    blurb: 'A neural network training live on drifting credit-risk data — always running behind my name.',
+    blurb: 'A neural network training live on drifting credit-risk data — always running in the launch frame up top.',
     action: 'hero',
   },
   {
@@ -61,7 +61,7 @@ export const MechanismsSection: React.FC = () => {
 
   const onCard = (c: Card) => {
     if (c.action === 'hero') {
-      document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('boundary')?.scrollIntoView({ behavior: 'smooth' });
       return;
     }
     if (c.action === 'lab') {

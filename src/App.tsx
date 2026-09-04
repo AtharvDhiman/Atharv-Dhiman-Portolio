@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { LoadingScreen } from './components/LoadingScreen';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
+import { BoundaryFrame } from './components/BoundaryFrame';
 import { MechanismsSection } from './components/MechanismsSection';
 import { SelectedWorksSection } from './components/SelectedWorksSection';
 import { PlaygroundSection } from './components/PlaygroundSection';
@@ -36,6 +37,7 @@ export function App() {
 
       <main>
         <HeroSection />
+        <BoundaryFrame />
         <MechanismsSection />
         <SelectedWorksSection />
         <PlaygroundSection />

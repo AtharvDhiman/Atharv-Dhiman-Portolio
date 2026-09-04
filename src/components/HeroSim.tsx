@@ -34,9 +34,13 @@ function cssVar(name: string, fallback: string): string {
 
 interface HeroSimProps {
   headlineRef?: React.RefObject<HTMLElement | null>;
+  /** true when the sim runs inside the launch media frame instead of
+      full-bleed behind a headline: no radial dim, no headline void, and the
+      mobile HUD hugs the frame's bottom edge. */
+  framed?: boolean;
 }
 
-export const HeroSim: React.FC<HeroSimProps> = ({ headlineRef }) => {
+export const HeroSim: React.FC<HeroSimProps> = ({ headlineRef, framed = false }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sparkRef = useRef<HTMLCanvasElement>(null);
   const hudRef = useRef<{ [k: string]: HTMLElement[] }>({});
@@ -95,7 +99,7 @@ export const HeroSim: React.FC<HeroSimProps> = ({ headlineRef }) => {
     // Soft ellipse around the headline so applicants flow around the name
     let voidZone: { cx: number; cy: number; rx: number; ry: number } | null = null;
     const measureVoid = () => {
-      const h1 = headlineRef?.current ?? document.querySelector('#hero h1');
+      const h1 = headlineRef?.current;
       if (!h1) return;
       const hr = h1.getBoundingClientRect();
       const cr = canvas.getBoundingClientRect();
@@ -460,15 +464,18 @@ export const HeroSim: React.FC<HeroSimProps> = ({ headlineRef }) => {
         style={{ touchAction: 'pan-y' }}
       />
 
-      {/* Radial dim so the headline always wins the contrast fight */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 62% 48% at 50% 44%, var(--bg) 0%, color-mix(in srgb, var(--bg) 62%, transparent) 55%, transparent 100%)',
-        }}
-      />
+      {/* Radial dim so the headline always wins the contrast fight (only
+          when the sim sits behind one) */}
+      {!framed && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 62% 48% at 50% 44%, var(--bg) 0%, color-mix(in srgb, var(--bg) 62%, transparent) 55%, transparent 100%)',
+          }}
+        />
+      )}
 
       {/* Telemetry HUD — raw values straight from the sim, updated at 4Hz.
           pointer-events-none so the strip never shields the canvas; only the
@@ -507,7 +514,11 @@ export const HeroSim: React.FC<HeroSimProps> = ({ headlineRef }) => {
       </div>
 
       {/* Compact mobile HUD — same raw values via shared ref keys */}
-      <div className="pointer-events-none absolute bottom-28 left-1/2 z-20 flex w-full -translate-x-1/2 flex-col items-center gap-0.5 px-3 sm:hidden">
+      <div
+        className={`pointer-events-none absolute ${
+          framed ? 'bottom-2' : 'bottom-28'
+        } left-1/2 z-20 flex w-full -translate-x-1/2 flex-col items-center gap-0.5 px-3 sm:hidden`}
+      >
         <div className="flex items-center gap-2 whitespace-nowrap font-mono text-[9px] text-muted">
           <span>epoch <span ref={hud('epoch')} className="text-text-primary">0000</span></span>
           <span>loss <span ref={hud('loss')} className="text-text-primary">—</span></span>
