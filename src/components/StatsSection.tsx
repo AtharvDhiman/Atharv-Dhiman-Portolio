@@ -9,14 +9,14 @@ interface StatItem {
 
 const STATS: StatItem[] = [
   {
-    value: '51,336+',
+    value: '51,336',
     label: 'Applicants Scored',
     sublabel: 'Bharat Electronics Ltd (BEL) credit pipeline',
   },
   {
-    value: '99.4%',
-    label: 'ML Model Accuracy',
-    sublabel: 'Gradient Boosting (F1 0.989) on BEL FinRisk',
+    value: '0.989',
+    label: 'F1 Score',
+    sublabel: 'Gradient Boosting, 98–99% per-class precision on BEL FinRisk',
   },
   {
     value: '91.6%',

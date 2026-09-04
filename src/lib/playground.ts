@@ -231,7 +231,7 @@ export function askData(raw: string): AssistantAnswer {
     return {
       headline: `${KB.accuracy}% model accuracy`,
       detail:
-        'RetainAI compares Logistic Regression, Random Forest and Gradient Boosting; the best model reaches 91.6% accuracy on serverless inference.',
+        'RetainAI compares Logistic Regression, Random Forest and Gradient Boosting; the best model reaches 91.6% accuracy with cloud-hosted, real-time inference.',
     };
   }
 

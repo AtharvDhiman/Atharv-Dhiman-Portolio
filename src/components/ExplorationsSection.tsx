@@ -39,8 +39,8 @@ const SKILLS_PLAYGROUND: SkillItem[] = [
     category: 'Databases',
     imageUrl: 'https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&w=800&q=80',
     rotation: '-rotate-2',
-    description: 'Designing relational schemas and data models in PostgreSQL and MySQL that feed analytics pipelines and BI exports.',
-    tags: ['PostgreSQL', 'MySQL', 'Relational Data Modelling'],
+    description: 'Designing relational and star-schema data models in PostgreSQL, MySQL and SQLite, with ETL and batch scoring pipelines that feed analytics and BI exports.',
+    tags: ['PostgreSQL', 'MySQL', 'SQLite', 'ETL Pipelines'],
   },
   {
     id: 'skill-4',
@@ -58,7 +58,7 @@ const SKILLS_PLAYGROUND: SkillItem[] = [
     imageUrl: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80',
     rotation: '-rotate-1',
     description: 'Dashboard development and KPI reporting with Power BI, DAX and star-schema modelling, alongside Matplotlib, Seaborn and Chart.js visuals.',
-    tags: ['Power BI', 'DAX', 'Seaborn', 'Chart.js'],
+    tags: ['Power BI', 'DAX', 'Seaborn', 'Chart.js', 'Matplotlib'],
   },
   {
     id: 'skill-6',
@@ -66,8 +66,8 @@ const SKILLS_PLAYGROUND: SkillItem[] = [
     category: 'Tools & Deployment',
     imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
     rotation: 'rotate-2',
-    description: 'Shipping Flask analytics apps from Jupyter notebooks to production on Vercel and Render, versioned with Git and GitHub.',
-    tags: ['Flask', 'Git & GitHub', 'Jupyter', 'Vercel', 'Render'],
+    description: 'Shipping Flask apps with REST endpoints from Jupyter notebooks to production on Vercel and Render, versioned with Git and GitHub.',
+    tags: ['Flask', 'REST Endpoints', 'Git & GitHub', 'Jupyter', 'Vercel', 'Render'],
   },
 ];
 

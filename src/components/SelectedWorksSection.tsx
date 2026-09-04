@@ -25,8 +25,8 @@ const PROJECTS: Project[] = [
     aspectRatio: 'aspect-[16/10]',
     imageUrl: '/projects/finrisk.jpg',
     demoUrl: 'https://fin-risk-credit-risk-and-loan-recom-five.vercel.app',
-    description: 'Sole owner of an end-to-end credit risk assessment brief at Bharat Electronics Limited (BEL) Central Research Laboratory. Scored 51,336 applicant records merged from internal bank systems and CIBIL bureau data into four risk tiers (P1–P4) with tier-specific caps and FOIR (≤30%) guardrails.',
-    highlights: ['99.4% Accuracy (F1 0.989)', '51,336 Applicants Scored', 'Power BI Star-Schema Export'],
+    description: 'Sole owner of an end-to-end credit risk assessment brief at Bharat Electronics Limited (BEL) Central Research Laboratory. Scored 51,336 applicant records merged from internal bank systems and CIBIL bureau data into four risk tiers with tier-specific caps and FOIR (≤30%) guardrails.',
+    highlights: ['0.989 F1 (98–99% Precision)', '51,336 Applicants Scored', 'Power BI Star-Schema Export'],
     skills: ['Python', 'Flask', 'Scikit-Learn', 'PostgreSQL', 'Power BI'],
   },
   {

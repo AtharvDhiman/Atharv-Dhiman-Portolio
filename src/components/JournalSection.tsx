@@ -18,7 +18,7 @@ const CERTIFICATIONS: Certification[] = [
   {
     title: 'Data Analytics Job Simulation',
     issuer: 'Deloitte Australia (Forage)',
-    date: 'Jan – Jun 2026',
+    date: 'Jun 2026',
     badgeColor: 'text-emerald-400 border-emerald-900 bg-emerald-950/40',
   },
   {
@@ -28,7 +28,7 @@ const CERTIFICATIONS: Certification[] = [
     badgeColor: 'text-cyan-400 border-cyan-900 bg-cyan-950/40',
   },
   {
-    title: 'SQL (Basic) Certificate',
+    title: 'SQL (Basic)',
     issuer: 'HackerRank',
     date: 'Aug 2025',
     badgeColor: 'text-purple-400 border-purple-900 bg-purple-950/40',
@@ -80,7 +80,7 @@ export const JournalSection: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 border-b border-stroke/60 pb-6">
             <div>
               <span className="text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-3 py-1 rounded-full">
-                IT Intern — Central Research Laboratory (CRL)
+                Data Science Intern — Central Research Laboratory (CRL)
               </span>
               <h3 className="text-2xl md:text-3xl font-display italic text-text-primary mt-2">
                 Bharat Electronics Limited (BEL), Ghaziabad
@@ -98,11 +98,11 @@ export const JournalSection: React.FC = () => {
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-normal text-text-primary/90 mb-6">
             <li className="flex items-start gap-2 bg-bg/50 p-3.5 rounded-2xl border border-stroke/50">
               <span className="text-emerald-400 font-bold">•</span>
-              <span>Built pipeline over 51,336 applicant records merged from internal bank systems and CIBIL bureau data into four risk tiers (P1–P4).</span>
+              <span>Built pipeline over 51,336 applicant records merged from internal bank systems and CIBIL bureau data into four risk tiers.</span>
             </li>
             <li className="flex items-start gap-2 bg-bg/50 p-3.5 rounded-2xl border border-stroke/50">
               <span className="text-emerald-400 font-bold">•</span>
-              <span>Engineered domain features and pruned 19 redundant columns; Gradient Boosting achieved 99.4% accuracy (F1 0.989).</span>
+              <span>Engineered domain features and pruned 19 redundant columns; Gradient Boosting reached 0.989 F1 with 98–99% per-class precision on held-out test data.</span>
             </li>
             <li className="flex items-start gap-2 bg-bg/50 p-3.5 rounded-2xl border border-stroke/50">
               <span className="text-emerald-400 font-bold">•</span>
@@ -110,13 +110,13 @@ export const JournalSection: React.FC = () => {
             </li>
             <li className="flex items-start gap-2 bg-bg/50 p-3.5 rounded-2xl border border-stroke/50">
               <span className="text-emerald-400 font-bold">•</span>
-              <span>Implemented FOIR (≤30%) guardrails, real-time Flask dashboard, debt simulation, and Power BI star-schema export.</span>
+              <span>Implemented FOIR (≤30%) guardrails, real-time Flask scoring, bulk CSV batch inference, and Power BI star-schema export.</span>
             </li>
           </ul>
 
           <div className="flex items-center justify-between pt-2">
             <div className="flex flex-wrap gap-2">
-              {['Python', 'Flask', 'scikit-learn', 'PostgreSQL', 'Power BI'].map((tech) => (
+              {['Python', 'Flask', 'scikit-learn', 'Power BI'].map((tech) => (
                 <span key={tech} className="text-[11px] font-mono text-muted bg-surface px-3 py-1 rounded-full border border-stroke">
                   {tech}
                 </span>
@@ -146,22 +146,12 @@ export const JournalSection: React.FC = () => {
             </div>
 
             <div className="p-6 bg-surface/30 border border-stroke rounded-3xl">
-              <span className="text-xs font-mono text-accent">Oct 2023 – Jul 2027</span>
+              <span className="text-xs font-mono text-accent">Oct 2023 – Jul 2027 (Expected)</span>
               <h4 className="text-lg font-medium text-text-primary mt-1">
                 B.Tech, Information Technology
               </h4>
               <p className="text-xs text-muted mt-1">
                 ABES Engineering College (AKTU), Ghaziabad
-              </p>
-            </div>
-
-            <div className="p-6 bg-surface/30 border border-stroke rounded-3xl">
-              <span className="text-xs font-mono text-muted">2022</span>
-              <h4 className="text-lg font-medium text-text-primary mt-1">
-                Class 12th (CBSE) — Science &amp; Math
-              </h4>
-              <p className="text-xs text-muted mt-1">
-                Cambridge International School · 67.6%
               </p>
             </div>
           </div>
