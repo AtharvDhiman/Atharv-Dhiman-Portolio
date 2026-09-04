@@ -85,19 +85,40 @@ export function sampleGlyphs(
   ctx.fillStyle = '#ffffff';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  lines.forEach((ln, i) => ctx.fillText(ln, w / 2, PAD + lineGap * (i + 0.5)));
+  // stroke as well as fill: the serif's hairline strokes (like the H
+  // crossbar) are only a few px thick and would otherwise sample to nothing
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = LINE_H * 0.05;
+  ctx.lineJoin = 'round';
+  lines.forEach((ln, i) => {
+    const y = PAD + lineGap * (i + 0.5);
+    ctx.fillText(ln, w / 2, y);
+    ctx.strokeText(ln, w / 2, y);
+  });
 
   const data = ctx.getImageData(0, 0, w, h).data;
+  // One star per stride-cell at the CENTROID of that cell's inked pixels —
+  // unlike point-on-grid sampling this can never skip a thin stroke that
+  // runs between grid rows, so every bar of every letter stays complete.
   const collect = (stride: number): number[] => {
     const out: number[] = [];
-    for (let y = 0; y < h; y += stride) {
-      for (let x = 0; x < w; x += stride) {
-        if (data[(y * w + x) * 4 + 3] > 140) {
-          // deterministic sub-pixel jitter so the grid never shows
-          const j = (((x * 73856093) ^ (y * 19349663)) >>> 0) % 1000;
-          const k = (((x * 83492791) ^ (y * 2654435761)) >>> 0) % 1000;
-          out.push(x + (j / 1000 - 0.5) * stride, y + (k / 1000 - 0.5) * stride);
+    for (let cy = 0; cy < h; cy += stride) {
+      for (let cx = 0; cx < w; cx += stride) {
+        let sx = 0;
+        let sy = 0;
+        let n = 0;
+        const yMax = Math.min(cy + stride, h);
+        const xMax = Math.min(cx + stride, w);
+        for (let y = cy; y < yMax; y += 2) {
+          for (let x = cx; x < xMax; x += 2) {
+            if (data[(y * w + x) * 4 + 3] > 140) {
+              sx += x;
+              sy += y;
+              n++;
+            }
+          }
         }
+        if (n > 0) out.push(sx / n, sy / n);
       }
     }
     return out;
@@ -196,11 +217,13 @@ export class Starfield {
         tx,
         ty,
         delayMs: ((tx - blockX) / Math.max(1, block.w * scale)) * 1000 + rng() * 550,
-        r: 0.9 + rng() * 0.9,
-        baseA: 0.68 + rng() * 0.32,
+        // bright, near-uniform, barely-twinkling stars so the letterforms
+        // stay solid and readable once assembled
+        r: 1.1 + rng() * 1.0,
+        baseA: 0.85 + rng() * 0.15,
         twPhase: rng() * Math.PI * 2,
         twSpeed: 0.5 + rng() * 1.4,
-        ci: cr < 0.84 ? 0 : cr < 0.94 ? 1 : 2,
+        ci: cr < 0.92 ? 0 : cr < 0.97 ? 1 : 2,
       });
     }
   }

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { Logo } from './Logo';
 import { Starfield, sampleGlyphs } from '../lib/starfield';
 
 // ---------------------------------------------------------------------------
@@ -97,7 +96,7 @@ export const HeroSection: React.FC = () => {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       field = new Starfield(SEED, w, h, mobile ? 150 : 420);
-      const block = sampleGlyphs(['ATHARV', 'DHIMAN'], mobile ? 420 : 900);
+      const block = sampleGlyphs(['ATHARV', 'DHIMAN'], mobile ? 700 : 1500);
       if (block.count > 0) {
         // fit the constellation into the open sky between the navbar and the
         // statement block, wherever that lands on this viewport
@@ -105,8 +104,9 @@ export const HeroSection: React.FC = () => {
         const contentTop = contentRef.current
           ? contentRef.current.getBoundingClientRect().top - cr.top
           : h * 0.62;
-        const regionTop = Math.max(72, h * 0.1);
-        const regionH = Math.max(120, Math.min(h * 0.9, contentTop - 16) - regionTop);
+        // clear the floating navbar pill, and never intrude into the content
+        const regionTop = Math.max(96, h * 0.1);
+        const regionH = Math.max(90, Math.min(h * 0.9, contentTop - 24) - regionTop);
         const targetW = Math.min(w * 0.86, 980);
         const scale = Math.min(targetW / block.w, (regionH * 0.92) / block.h);
         const bx = (w - block.w * scale) / 2;
@@ -137,7 +137,8 @@ export const HeroSection: React.FC = () => {
         }
         for (const s of field.con) {
           if (s.ci !== ci) continue;
-          ctx.globalAlpha = s.baseA * (0.78 + 0.22 * Math.sin(s.twPhase + t * s.twSpeed));
+          // shallow twinkle only — deep flicker breaks the letterforms apart
+          ctx.globalAlpha = s.baseA * (0.9 + 0.1 * Math.sin(s.twPhase + t * s.twSpeed));
           ctx.beginPath();
           ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
           ctx.fill();
@@ -261,25 +262,21 @@ export const HeroSection: React.FC = () => {
         ref={contentRef}
         className="relative z-10 mt-auto w-full max-w-4xl mx-auto px-4 sm:px-6 pb-6 sm:pb-[7svh] text-center flex flex-col items-center"
       >
-        <div className="blur-in mb-4 w-[60px] h-[60px] sm:w-[72px] sm:h-[72px] hover:scale-105 transition-transform duration-300">
-          <Logo size="100%" />
-        </div>
-
         <span className="blur-in inline-block text-[10px] sm:text-xs text-muted uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-3 font-medium px-2">
-          DATA ANALYST &amp; MACHINE LEARNING // ABES IT '27
+          DATA SCIENTIST · MACHINE LEARNING &amp; PREDICTIVE MODELLING // ABES IT '27
         </span>
 
-        <h1 className="name-reveal text-4xl sm:text-6xl md:text-7xl font-medium tracking-[-0.03em] leading-[1.04] text-text-primary mb-4">
+        <h1 className="name-reveal text-3xl sm:text-5xl md:text-6xl font-medium tracking-[-0.03em] leading-[1.06] text-text-primary mb-4">
           <span className="sr-only">Atharv Dhiman — </span>
           A new generation of{' '}
-          <em className="font-display italic font-normal">analytics</em>.
+          <em className="font-display italic font-normal">data science</em>.
         </h1>
 
-        <p className="blur-in text-xs sm:text-sm md:text-base text-muted max-w-xs sm:max-w-lg md:max-w-xl mb-7 font-normal leading-relaxed px-2">
+        <p className="blur-in text-xs sm:text-sm md:text-base text-muted max-w-xs sm:max-w-lg md:max-w-xl mb-6 font-normal leading-relaxed px-2">
           Not a mockup and not a reel — the models on this page train, score,
           forecast, and verify themselves in your browser while you watch.
-          Built by a final-year B.Tech (IT) student who modeled 51,000+ credit
-          applicants at Bharat Electronics Limited.
+          Built by a final-year B.Tech (IT) student who benchmarked classifiers
+          on 51,336 credit applicant records at Bharat Electronics Limited.
         </p>
 
         <div className="blur-in flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto max-w-xs sm:max-w-none">
