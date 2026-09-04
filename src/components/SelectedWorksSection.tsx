@@ -42,6 +42,19 @@ const PROJECTS: Project[] = [
     highlights: ['91.6% Attrition Accuracy', 'Key Driver Analysis', 'Batch CSV Processor'],
     skills: ['Python', 'Flask', 'Scikit-Learn', 'Chart.js', 'PostgreSQL'],
   },
+  {
+    id: 'crunchdao',
+    title: 'CrunchDAO — Machine Learning Competitions',
+    category: 'Quant ML Competitions',
+    year: '2026',
+    colSpan: 'md:col-span-12',
+    aspectRatio: 'aspect-[16/10] md:aspect-[21/8]',
+    imageUrl: '/projects/crunchdao.png',
+    demoUrl: 'https://hub.crunchdao.com',
+    description: 'Competing on live CrunchDAO leaderboards in Structural Break: Real-Time Edition, Synth: Synthetic Price Data and DataCrunch #2 — time-series and tabular modelling scored against out-of-sample financial data, where a submission only counts if it generalizes. The card art is the brief itself: a seeded random walk whose regime breaks at the dashed line, rendered by a from-scratch PNG encoder in this site’s repo.',
+    highlights: ['3 Live Leaderboards', 'Structural-Break Detection', 'Out-of-Sample Scoring'],
+    skills: ['Python', 'pandas', 'scikit-learn', 'Time-Series Modelling'],
+  },
 ];
 
 export const SelectedWorksSection: React.FC = () => {
@@ -75,12 +88,12 @@ export const SelectedWorksSection: React.FC = () => {
 
           <div className="flex flex-col md:items-end gap-3">
             <p className="text-sm text-muted max-w-sm font-normal">
-              Cloud-deployed machine learning models and analytics applications for credit risk assessment and workforce analytics.
+              Cloud-deployed machine learning models and analytics applications for credit risk assessment and workforce analytics — plus live quant ML competition work.
             </p>
           </div>
         </motion.div>
 
-        {/* 2 Featured Projects Grid (Side by side 6 / 6 span) */}
+        {/* Projects grid: two 6-span cards side by side, CrunchDAO full-width below */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
           {PROJECTS.map((project) => (
             <motion.div
