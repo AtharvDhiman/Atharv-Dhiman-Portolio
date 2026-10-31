@@ -19,6 +19,11 @@ const STATS: StatItem[] = [
     sublabel: 'Gradient Boosting, 98–99% per-class precision on BEL FinRisk',
   },
   {
+    value: '99.06%',
+    label: 'PlantGuard Accuracy',
+    sublabel: 'EfficientNet-B0 on 17,572 held-out images, 38 classes',
+  },
+  {
     value: '91.6%',
     label: 'RetainAI Accuracy',
     sublabel: 'Employee flight risk forecasting runtime',
@@ -29,7 +34,7 @@ export const StatsSection: React.FC = () => {
   return (
     <section className="bg-bg py-16 md:py-24 border-y border-stroke/50 select-none">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {STATS.map((stat, idx) => (
             <motion.div
               key={idx}
@@ -37,12 +42,12 @@ export const StatsSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: idx * 0.15 }}
               viewport={{ once: true }}
-              className="flex flex-col items-start p-8 bg-surface/20 border border-stroke rounded-3xl relative overflow-hidden group hover:border-stroke/80 transition-all duration-300"
+              className="flex flex-col items-start p-6 md:p-7 bg-surface/20 border border-stroke rounded-3xl relative overflow-hidden group hover:border-stroke/80 transition-all duration-300"
             >
               {/* Subtle background glow */}
               <div className="absolute -right-8 -bottom-8 w-32 h-32 accent-gradient rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
 
-              <span className="text-4xl md:text-5xl lg:text-6xl font-display italic text-text-primary mb-3 tracking-tight">
+              <span className="text-4xl md:text-5xl font-display italic text-text-primary mb-3 tracking-tight">
                 {stat.value}
               </span>
               <h3 className="text-base md:text-lg font-medium text-text-primary mb-1">

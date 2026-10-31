@@ -90,8 +90,9 @@ export const BoundaryFrame: React.FC = () => {
           <p className="mt-6 text-sm md:text-base leading-relaxed text-muted">
             State of the art on his own benchmarks: a credit-risk portfolio of
             51,336 applicants modeled to 0.989 F1 during his internship at
-            Bharat Electronics Limited, end-to-end ML pipelines and Flask applications
-            deployed to the cloud, and six live mechanisms on this page — each
+            Bharat Electronics Limited, a CNN plant-disease detector at 99.06% test
+            accuracy presented at ICABCR-2026, ML applications deployed to the
+            cloud, and six live mechanisms on this page — each
             one trained, scored, and verified on your device, with every
             displayed number genuinely computed. Nothing is eased, canned, or
             pre-rendered.

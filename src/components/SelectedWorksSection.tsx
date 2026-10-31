@@ -10,6 +10,7 @@ interface Project {
   aspectRatio: string;
   imageUrl: string;
   demoUrl?: string;
+  repoUrl?: string;
   description: string;
   highlights: string[];
   skills: string[];
@@ -30,6 +31,20 @@ const PROJECTS: Project[] = [
     skills: ['Python', 'Flask', 'Scikit-Learn', 'PostgreSQL', 'Power BI'],
   },
   {
+    id: 'plantguard',
+    title: 'PlantGuard AI — Plant Disease Detection',
+    category: 'Final Year Project · Published Research',
+    year: '2026',
+    colSpan: 'md:col-span-6',
+    aspectRatio: 'aspect-[16/10]',
+    imageUrl: '/projects/plantguard.png',
+    demoUrl: 'https://plant-disease-detection-x3y4.onrender.com/',
+    repoUrl: 'https://github.com/AtharvDhiman/plant-disease-detection',
+    description: 'Trained CNN models with CBAM attention to classify 38 disease and healthy classes across 14 plant species; the deployed EfficientNet-B0 reached 99.06% test accuracy and 0.9904 macro F1 on 17,572 held-out images. Calibrated confidence scores, an image-quality gate and Grad-CAM heat maps let the app decline unreliable photos and show what drove each prediction, at about 31 ms CPU inference per image on Render. Presented as a research paper at ICABCR-2026. The card art is an illustrative Grad-CAM-style render drawn by a script in this site’s repo, not model output.',
+    highlights: ['99.06% Test Accuracy', '0.9904 Macro F1', '38 Classes · 14 Species', '~31 ms CPU Inference'],
+    skills: ['PyTorch', 'CBAM Attention', 'Grad-CAM', 'ONNX Runtime'],
+  },
+  {
     id: 'retainai',
     title: 'RetainAI — Employee Flight Risk Platform',
     category: 'Predictive HR Analytics & ML',
@@ -41,6 +56,19 @@ const PROJECTS: Project[] = [
     description: 'Cloud-deployed predictive analytics web application forecasting employee attrition risk at 91.6% accuracy. Model comparison across Logistic Regression, Random Forest and Gradient Boosting surfaces the key attrition drivers — overtime, commute distance and compensation.',
     highlights: ['91.6% Attrition Accuracy', 'Key Driver Analysis', 'Batch CSV Processor'],
     skills: ['Python', 'Flask', 'Scikit-Learn', 'Chart.js', 'PostgreSQL'],
+  },
+  {
+    id: 'clv',
+    title: 'Customer Lifetime Value Prediction',
+    category: 'HCLTech Career Shaper',
+    year: '2026',
+    colSpan: 'md:col-span-6',
+    aspectRatio: 'aspect-[16/10]',
+    imageUrl: '/projects/clv.png',
+    repoUrl: 'https://github.com/AtharvDhiman/HCL-Shaper-Project',
+    description: 'Modelled 12-month customer lifetime value for 500 customers with BG/NBD and Gamma-Gamma models; six retention-action segments show the top 20% of customers hold 92% of predicted value and only 27% are likely still active. Audited the supplied data first — total_spend turned out to be frequency × recency rather than order value, and the CLV and segment labels carried no signal — so they were rebuilt from the base columns. Linear, Random Forest, Gradient Boosting and MLP regressors were benchmarked (5-fold CV R² up to 0.93, tracked in MLflow) and a Streamlit app scores customers. The card plots the top-20% → 92% result on an illustrative curve.',
+    highlights: ['Top 20% = 92% of Value', '5-Fold CV R² up to 0.93', '500 Customers · 6 Segments'],
+    skills: ['Python', 'lifetimes', 'scikit-learn', 'MLflow', 'Streamlit'],
   },
   {
     id: 'crunchdao',
@@ -88,12 +116,12 @@ export const SelectedWorksSection: React.FC = () => {
 
           <div className="flex flex-col md:items-end gap-3">
             <p className="text-sm text-muted max-w-sm font-normal">
-              Cloud-deployed machine learning models and analytics applications for credit risk assessment and workforce analytics — plus live quant ML competition work.
+              Cloud-deployed machine learning models for credit risk, plant disease detection, workforce attrition and customer lifetime value — plus live quant ML competition work.
             </p>
           </div>
         </motion.div>
 
-        {/* Projects grid: two 6-span cards side by side, CrunchDAO full-width below */}
+        {/* Projects grid: 6/6 pairs (FinRisk + PlantGuard, RetainAI + CLV), CrunchDAO full-width below */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
           {PROJECTS.map((project) => (
             <motion.div
@@ -163,18 +191,32 @@ export const SelectedWorksSection: React.FC = () => {
                     ))}
                   </div>
                 </div>
-                {project.demoUrl && (
-                  <a
-                    href={project.demoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-4 py-2 rounded-full hover:bg-emerald-900 transition-colors shrink-0 inline-flex items-center gap-1.5"
-                  >
-                    <span>Live Demo</span>
-                    <span>↗</span>
-                  </a>
-                )}
+                <div className="flex flex-wrap items-center gap-2 shrink-0">
+                  {project.repoUrl && (
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-xs font-mono text-muted border border-stroke px-4 py-2 rounded-full hover:text-text-primary hover:border-text-primary/40 transition-colors inline-flex items-center gap-1.5"
+                    >
+                      <span>GitHub</span>
+                      <span>↗</span>
+                    </a>
+                  )}
+                  {project.demoUrl && (
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-4 py-2 rounded-full hover:bg-emerald-900 transition-colors inline-flex items-center gap-1.5"
+                    >
+                      <span>Live Demo</span>
+                      <span>↗</span>
+                    </a>
+                  )}
+                </div>
               </div>
             </motion.div>
           ))}
@@ -241,17 +283,30 @@ export const SelectedWorksSection: React.FC = () => {
                 ))}
               </div>
 
-              {selectedProject.demoUrl && (
-                <a
-                  href={selectedProject.demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 accent-gradient text-bg font-medium px-6 py-3 rounded-full text-xs hover:opacity-90 transition-opacity"
-                >
-                  <span>Launch Live App</span>
-                  <span>↗</span>
-                </a>
-              )}
+              <div className="flex flex-wrap items-center gap-2">
+                {selectedProject.repoUrl && (
+                  <a
+                    href={selectedProject.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 border border-stroke text-text-primary font-medium px-6 py-3 rounded-full text-xs hover:border-text-primary/50 transition-colors"
+                  >
+                    <span>View on GitHub</span>
+                    <span>↗</span>
+                  </a>
+                )}
+                {selectedProject.demoUrl && (
+                  <a
+                    href={selectedProject.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 accent-gradient text-bg font-medium px-6 py-3 rounded-full text-xs hover:opacity-90 transition-opacity"
+                  >
+                    <span>Launch Live App</span>
+                    <span>↗</span>
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </div>

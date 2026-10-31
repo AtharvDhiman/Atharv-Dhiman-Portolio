@@ -106,11 +106,11 @@ export const JournalSection: React.FC = () => {
             </li>
             <li className="flex items-start gap-2 bg-bg/50 p-3.5 rounded-2xl border border-stroke/50">
               <span className="text-emerald-400 font-bold">•</span>
-              <span>Discovered approval was credit history driven (85-91% approval across income bands with boundary near 650-660 score).</span>
+              <span>Feature importance showed Credit_Score (43.7%) and Credit_Health_Score (13.4%) dominating, with 85–91% approval in every income band — approval is driven by credit history, not income.</span>
             </li>
             <li className="flex items-start gap-2 bg-bg/50 p-3.5 rounded-2xl border border-stroke/50">
               <span className="text-emerald-400 font-bold">•</span>
-              <span>Implemented FOIR (≤30%) guardrails, real-time Flask scoring, bulk CSV batch inference, and Power BI star-schema export.</span>
+              <span>Four risk tiers with 30% FOIR guardrails and risk-adjusted EMI caps cover a Rs.1,118 Cr loan book across 45,160 eligible applicants; served via Flask with real-time and bulk CSV scoring and a star-schema export for Power BI.</span>
             </li>
           </ul>
 
@@ -152,6 +152,24 @@ export const JournalSection: React.FC = () => {
               </h4>
               <p className="text-xs text-muted mt-1">
                 ABES Engineering College (AKTU), Ghaziabad
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3 mt-2 mb-2">
+              <div className="w-6 h-px bg-stroke" />
+              <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
+                Publication
+              </span>
+            </div>
+
+            <div className="p-6 bg-surface/30 border border-stroke rounded-3xl">
+              <span className="text-xs font-mono text-accent">ICABCR-2026 · 9–10 Oct 2026</span>
+              <h4 className="text-lg font-medium text-text-primary mt-1">
+                &ldquo;Plant Disease Detection Using CNN with Attention Mechanism&rdquo;
+              </h4>
+              <p className="text-xs text-muted mt-1 leading-relaxed">
+                Paper ID 231 — presented at the International Conference on AI Based Cyber
+                Resilience, IILM University, Greater Noida.
               </p>
             </div>
           </div>

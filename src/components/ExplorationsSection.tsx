@@ -30,7 +30,7 @@ const SKILLS_PLAYGROUND: SkillItem[] = [
     category: 'Machine Learning',
     imageUrl: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80',
     rotation: 'rotate-2',
-    description: 'Cross-validated classification pipelines comparing Logistic Regression, Random Forest and Gradient Boosting, with model evaluation and feature-importance analysis for predictive modelling.',
+    description: 'Cross-validated classification pipelines comparing Logistic Regression, Random Forest and Gradient Boosting, with hyperparameter tuning, model evaluation (F1, precision/recall) and feature-importance analysis for predictive modelling.',
     tags: ['scikit-learn', 'Gradient Boosting', 'Cross-Validation', 'Feature Importance'],
   },
   {
@@ -48,26 +48,44 @@ const SKILLS_PLAYGROUND: SkillItem[] = [
     category: 'Data Analysis',
     imageUrl: 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=800&q=80',
     rotation: 'rotate-3',
-    description: 'Data cleaning, wrangling and EDA with statistical testing (Chi-Square, correlation analysis), plus Excel Power Query and pivot-table reporting.',
+    description: 'Data cleaning and EDA with statistical testing (hypothesis testing, Chi-Square, correlation analysis), plus Excel Power Query and pivot-table reporting.',
     tags: ['pandas', 'NumPy', 'SciPy', 'Excel (Power Query)'],
   },
   {
     id: 'skill-5',
-    title: 'Power BI & Interactive Visualizations',
+    title: 'Power BI, Tableau & Interactive Visualizations',
     category: 'BI & Visualisation',
     imageUrl: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80',
     rotation: '-rotate-1',
-    description: 'Dashboard development and KPI reporting with Power BI, DAX and star-schema modelling, alongside Matplotlib, Seaborn and Chart.js visuals.',
-    tags: ['Power BI', 'DAX', 'Seaborn', 'Chart.js', 'Matplotlib'],
+    description: 'KPI dashboards with Power BI (DAX) and Tableau on star-schema models, alongside Matplotlib, Seaborn and Chart.js visuals.',
+    tags: ['Power BI', 'Tableau', 'DAX', 'Seaborn', 'Chart.js', 'Matplotlib'],
   },
   {
     id: 'skill-6',
-    title: 'Flask Apps, Git & Cloud Deployment',
+    title: 'Flask, Streamlit & Cloud Deployment',
     category: 'Tools & Deployment',
     imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
     rotation: 'rotate-2',
-    description: 'Shipping Flask apps with REST endpoints from Jupyter notebooks to production on Vercel and Render, versioned with Git and GitHub.',
-    tags: ['Flask', 'REST Endpoints', 'Git & GitHub', 'Jupyter', 'Vercel', 'Render'],
+    description: 'Shipping Flask and Streamlit apps and ONNX Runtime models from Jupyter notebooks to production on Vercel and Render, versioned with Git and GitHub.',
+    tags: ['Flask', 'Streamlit', 'ONNX Runtime', 'Git & GitHub', 'Jupyter', 'Vercel', 'Render'],
+  },
+  {
+    id: 'skill-7',
+    title: 'Deep Learning & Explainable Vision',
+    category: 'Deep Learning',
+    imageUrl: '/projects/plantguard.png',
+    rotation: '-rotate-2',
+    description: 'PyTorch CNN models with CBAM attention, calibrated confidence scores and Grad-CAM heat maps — shipped through ONNX Runtime so the app can decline photos it cannot trust and show what drove each prediction.',
+    tags: ['PyTorch', 'CNN + CBAM Attention', 'Grad-CAM', 'ONNX Runtime'],
+  },
+  {
+    id: 'skill-8',
+    title: 'Customer Analytics & Experiment Tracking',
+    category: 'Predictive Modelling',
+    imageUrl: '/projects/clv.png',
+    rotation: 'rotate-3',
+    description: 'BG/NBD and Gamma-Gamma customer lifetime value models, regressors benchmarked on 5-fold cross-validated R-squared, and every run tracked in MLflow.',
+    tags: ['BG/NBD CLV', 'MLflow', 'R-squared', 'Gamma-Gamma'],
   },
 ];
 
@@ -159,7 +177,7 @@ export const ExplorationsSection: React.FC = () => {
           </h2>
 
           <p className="text-sm text-muted max-w-sm mx-auto mb-8 font-normal">
-            Languages, data analysis, ML modelling, and BI reporting tools.
+            Languages, ML and deep learning, statistics, databases, BI reporting and deployment.
           </p>
 
           <a
